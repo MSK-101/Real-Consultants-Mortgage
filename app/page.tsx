@@ -1758,7 +1758,7 @@ function EmbedsSection() {
                 frameBorder="0"
                 marginHeight={0}
                 marginWidth={0}
-                height="400px"
+                height="250px"
                 width="100%"
                 allowFullScreen
               />
@@ -1800,7 +1800,7 @@ function EmbedsSection() {
                 frameBorder="0"
                 marginHeight={0}
                 marginWidth={0}
-                height="400px"
+                height="250px"
                 width="100%"
                 allowFullScreen
               />

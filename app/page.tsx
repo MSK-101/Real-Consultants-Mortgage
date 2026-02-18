@@ -1,21 +1,6 @@
 "use client";
 
 import { useState, useEffect, useRef } from "react";
-
-// Declare Calendly global type
-declare global {
-  interface Window {
-    Calendly?: {
-      initBadgeWidget: (options: {
-        url: string;
-        text: string;
-        color: string;
-        textColor: string;
-        branding: boolean;
-      }) => void;
-    };
-  }
-}
 import {
   motion,
   useInView,
@@ -181,7 +166,9 @@ function Header() {
           >
             <div className="flex items-center">
               <span className="font-semibold text-lg sm:text-xl">Chris </span>
-              <span className="text-[#4a7a6c] font-semibold text-lg sm:text-xl">Crocker</span>
+              <span className="text-[#4a7a6c] font-semibold text-lg sm:text-xl">
+                Crocker
+              </span>
             </div>
             <div className="text-xs text-zinc-500">Mortgage Advisor</div>
           </motion.a>
@@ -195,19 +182,40 @@ function Header() {
         </div>
 
         {/* Desktop Navigation */}
-        <nav className="hidden md:flex items-center gap-4">
+        <nav className="hidden md:flex items-center gap-1">
           <motion.a
             href="#how-it-works"
-            className="text-zinc-400 hover:text-white transition-colors text-sm px-4 py-2 animated-underline"
+            className="text-zinc-400 hover:text-white transition-colors text-sm px-3 py-2 animated-underline"
             whileHover={{ y: -2 }}
           >
             How It Works
           </motion.a>
           <motion.a
+            href="#loan-types"
+            className="text-zinc-400 hover:text-white transition-colors text-sm px-3 py-2 animated-underline"
+            whileHover={{ y: -2 }}
+          >
+            Loan Options
+          </motion.a>
+          <motion.a
+            href="#reviews"
+            className="text-zinc-400 hover:text-white transition-colors text-sm px-3 py-2 animated-underline"
+            whileHover={{ y: -2 }}
+          >
+            Reviews
+          </motion.a>
+          <motion.a
+            href="#faq"
+            className="text-zinc-400 hover:text-white transition-colors text-sm px-3 py-2 animated-underline"
+            whileHover={{ y: -2 }}
+          >
+            FAQ
+          </motion.a>
+          <motion.a
             href="https://calendly.com/chriscrockermortgage/mwm"
             target="_blank"
             rel="noopener noreferrer"
-            className="btn-primary px-5 py-2.5 rounded-lg text-sm font-medium"
+            className="btn-primary px-5 py-2.5 rounded-lg text-sm font-medium ml-2"
             whileHover={{ scale: 1.05 }}
             whileTap={{ scale: 0.95 }}
           >
@@ -235,18 +243,40 @@ function Header() {
             transition={{ duration: 0.3 }}
             className="md:hidden glass mt-2 mx-4 rounded-xl overflow-hidden"
           >
-            <nav className="p-4 flex flex-col gap-3">
+            <nav className="p-4 flex flex-col gap-2">
               <a
                 href="#how-it-works"
                 className="text-zinc-400 hover:text-white py-2"
+                onClick={() => setMobileMenuOpen(false)}
               >
                 How It Works
+              </a>
+              <a
+                href="#loan-types"
+                className="text-zinc-400 hover:text-white py-2"
+                onClick={() => setMobileMenuOpen(false)}
+              >
+                Loan Options
+              </a>
+              <a
+                href="#reviews"
+                className="text-zinc-400 hover:text-white py-2"
+                onClick={() => setMobileMenuOpen(false)}
+              >
+                Reviews
+              </a>
+              <a
+                href="#faq"
+                className="text-zinc-400 hover:text-white py-2"
+                onClick={() => setMobileMenuOpen(false)}
+              >
+                FAQ
               </a>
               <a
                 href="https://calendly.com/chriscrockermortgage/mwm"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="btn-primary px-5 py-2.5 rounded-lg text-sm font-medium text-center"
+                className="btn-primary px-5 py-2.5 rounded-lg text-sm font-medium text-center mt-2"
               >
                 Book a Call
               </a>
@@ -340,7 +370,7 @@ function HeroSection() {
             className="flex flex-col sm:flex-row items-center justify-center gap-4"
           >
             <motion.a
-              href="https://homequityreport.com/chriscrocker"
+              href="https://240399.my1003app.com/2264202/register"
               target="_blank"
               rel="noopener noreferrer"
               className="inline-flex items-center gap-2 btn-primary px-8 py-4 rounded-xl text-lg font-medium"
@@ -569,67 +599,48 @@ function WhyThisApproachSection() {
   );
 }
 
-// Roadmap Section
+// Roadmap Section - Two Paths Side by Side with Embeds
 function RoadmapSection() {
   const ref = useRef(null);
   const isInView = useInView(ref, { once: true, margin: "-100px" });
-  const [activeTab, setActiveTab] = useState<"buying" | "refinancing">(
-    "buying"
-  );
 
   const buyingSteps = [
     {
-      icon: Target,
       title: "Understand Your Buying Power",
-      description:
-        "We start by looking at income, credit, cash on hand, and your comfort level — not just what a lender says you technically qualify for.",
+      description: "Income, credit, cash on hand, and your comfort level",
     },
     {
-      icon: Lightbulb,
       title: "Explore Loan Options",
-      description:
-        "Conventional, FHA, VA, Jumbo — explained in plain language so you understand the tradeoffs, not just the rate.",
+      description: "Conventional, FHA, VA, Jumbo — explained simply",
     },
     {
-      icon: FileText,
       title: "Build a Smart Purchase Strategy",
-      description:
-        "Monthly payment, cash to close, long-term flexibility, and how today's decision affects you years from now.",
+      description: "Monthly payment, cash to close, long-term flexibility",
     },
     {
-      icon: CheckCircle2,
       title: "Move Forward Confidently",
-      description: "With a plan you understand and numbers you trust.",
+      description: "With a plan you understand and numbers you trust",
     },
   ];
 
   const refinancingSteps = [
     {
-      icon: Target,
       title: "Review Your Current Situation",
-      description:
-        "We look at your existing loan, equity, future plans, and timing — not just today's payment.",
+      description: "Existing loan, equity, future plans, and timing",
     },
     {
-      icon: TrendingUp,
       title: "Compare Real Scenarios",
-      description:
-        "Side-by-side options that show total cost, monthly impact, and long-term outcomes.",
+      description: "Total cost, monthly impact, and long-term outcomes",
     },
     {
-      icon: FileText,
       title: "Streamline the Process",
-      description:
-        "Clear steps, proactive communication, and no last-minute confusion.",
+      description: "Clear steps, proactive communication",
     },
     {
-      icon: CheckCircle2,
       title: "Close With Confidence",
-      description: "Knowing exactly why you chose this option.",
+      description: "Knowing exactly why you chose this option",
     },
   ];
-
-  const steps = activeTab === "buying" ? buyingSteps : refinancingSteps;
 
   return (
     <section
@@ -637,8 +648,7 @@ function RoadmapSection() {
       id="how-it-works"
       className="py-24 relative overflow-hidden"
     >
-      {/* Background gradient orb */}
-      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] bg-[#01503c]/10 rounded-full blur-[120px] pointer-events-none" />
+      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[800px] bg-[#01503c]/10 rounded-full blur-[150px] pointer-events-none" />
 
       <div className="max-w-7xl mx-auto px-6 relative">
         {/* Section Header */}
@@ -666,157 +676,169 @@ function RoadmapSection() {
           >
             People come into the mortgage process at different points. Some are
             buying their first home. Others already own and want to improve what
-            they have. This page is designed to meet you where you are.
+            they have.
           </motion.p>
         </motion.div>
 
-        {/* Tabs */}
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          animate={isInView ? { opacity: 1, y: 0 } : {}}
-          transition={{ duration: 0.6, delay: 0.2 }}
-          className="flex justify-center gap-4 mb-12"
-        >
-          <motion.button
-            onClick={() => setActiveTab("buying")}
-            whileHover={{ scale: 1.02 }}
-            whileTap={{ scale: 0.98 }}
-            className={`px-6 py-3 rounded-xl text-sm font-medium transition-all duration-300 ${
-              activeTab === "buying"
-                ? "bg-gradient-to-r from-[#01503c]/30 to-[#4a7a6c]/20 text-[#4a7a6c] border border-[#4a7a6c]/40 glow-pulse"
-                : "bg-zinc-800/50 text-zinc-400 border border-zinc-700 hover:border-zinc-600"
-            }`}
+        {/* Two Paths - Stacked on mobile, side by side on desktop */}
+        <div className="space-y-16 lg:space-y-24">
+          {/* Buying a Home Path */}
+          <motion.div
+            initial={{ opacity: 0, y: 50 }}
+            animate={isInView ? { opacity: 1, y: 0 } : {}}
+            transition={{ duration: 0.6, delay: 0.2 }}
           >
-            <HomeIcon className="inline-block w-4 h-4 mr-2" />
-            Buying a Home
-          </motion.button>
-          <motion.button
-            onClick={() => setActiveTab("refinancing")}
-            whileHover={{ scale: 1.02 }}
-            whileTap={{ scale: 0.98 }}
-            className={`px-6 py-3 rounded-xl text-sm font-medium transition-all duration-300 ${
-              activeTab === "refinancing"
-                ? "bg-gradient-to-r from-[#01503c]/30 to-[#4a7a6c]/20 text-[#4a7a6c] border border-[#4a7a6c]/40 glow-pulse"
-                : "bg-zinc-800/50 text-zinc-400 border border-zinc-700 hover:border-zinc-600"
-            }`}
-          >
-            <DollarSign className="inline-block w-4 h-4 mr-2" />
-            Access Cash or Lower Payment
-          </motion.button>
-        </motion.div>
-
-        {/* Tab Content */}
-        <div className="max-w-3xl mx-auto">
-          <AnimatePresence mode="wait">
-            <motion.div
-              key={activeTab}
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              exit={{ opacity: 0, y: -20 }}
-              transition={{ duration: 0.3 }}
-              className="mb-8"
-            >
-              <p className="text-center text-zinc-400 text-lg mb-8">
-                {activeTab === "buying"
-                  ? "Buying With Confidence — Buying a home shouldn't feel like jumping blind into numbers you don't understand. This process gives you clarity before you make an offer."
-                  : "Restructuring with Purpose — Restructuring isn't about chasing the lowest rate. It's about making sure your mortgage still fits your goals, your timeline, and your financial reality."}
-              </p>
-            </motion.div>
-          </AnimatePresence>
-
-          {/* Steps */}
-          <div className="space-y-4 relative">
-            {/* Connecting line */}
-            <div className="absolute left-11 top-8 bottom-8 w-px bg-gradient-to-b from-[#01503c] via-[#4a7a6c] to-[#01503c] opacity-30" />
-
-            <AnimatePresence mode="wait">
-              {steps.map((step, index) => (
-                <motion.div
-                  key={`${activeTab}-${index}`}
-                  initial={{ opacity: 0, x: -30 }}
-                  animate={{ opacity: 1, x: 0 }}
-                  exit={{ opacity: 0, x: 30 }}
-                  transition={{ duration: 0.4, delay: index * 0.1 }}
-                  whileHover={{ x: 10, transition: { duration: 0.2 } }}
-                  className="feature-card rounded-xl p-6 flex items-start gap-4 relative"
-                >
-                  <div className="flex items-center gap-4">
-                    <motion.span
-                      className="w-8 h-8 rounded-full bg-gradient-to-br from-[#01503c] to-[#4a7a6c] text-white flex items-center justify-center text-sm font-bold relative z-10"
-                      initial={{ scale: 0 }}
-                      animate={{ scale: 1 }}
-                      transition={{ delay: 0.3 + index * 0.1, type: "spring" }}
-                    >
-                      {index + 1}
-                    </motion.span>
-                    <motion.div
-                      className="w-12 h-12 rounded-xl bg-[#01503c]/20 flex items-center justify-center"
-                      whileHover={{ rotate: 10, scale: 1.1 }}
-                      transition={{ type: "spring" }}
-                    >
-                      <step.icon className="w-6 h-6 text-[#4a7a6c]" />
-                    </motion.div>
+            <div className="grid lg:grid-cols-2 gap-8 lg:gap-12 items-start">
+              <div className="feature-card rounded-2xl p-8 border border-[#4a7a6c]/20">
+                <div className="flex items-center gap-3 mb-6">
+                  <div className="w-14 h-14 rounded-xl bg-gradient-to-br from-[#01503c] to-[#4a7a6c] flex items-center justify-center">
+                    <HomeIcon className="w-7 h-7 text-white" />
                   </div>
                   <div>
-                    <h3 className="text-lg font-semibold mb-1">{step.title}</h3>
-                    <p className="text-zinc-400 text-sm">{step.description}</p>
+                    <h3 className="text-2xl font-bold">Buying a Home</h3>
+                    <p className="text-zinc-500 text-sm">
+                      Start with clarity, not guesswork
+                    </p>
                   </div>
-                </motion.div>
-              ))}
-            </AnimatePresence>
-          </div>
+                </div>
 
-          {/* CTA */}
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            animate={isInView ? { opacity: 1, y: 0 } : {}}
-            transition={{ duration: 0.6, delay: 0.7 }}
-            className="text-center mt-10"
-          >
-            <motion.a
-              href="https://homequityreport.com/chriscrocker"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="inline-flex items-center gap-2 btn-primary px-8 py-4 rounded-xl text-lg font-medium"
-              whileHover={{ scale: 1.05 }}
-              whileTap={{ scale: 0.95 }}
-            >
-              {activeTab === "buying" ? "Get Started" : "Review My Options"}
-              <ArrowRight size={20} />
-            </motion.a>
+                <p className="text-zinc-400 mb-6">
+                  Buying a home shouldn&apos;t feel like jumping blind into
+                  numbers you don&apos;t understand. This process gives you
+                  clarity before you make an offer.
+                </p>
+
+                <div className="space-y-4">
+                  {buyingSteps.map((step, index) => (
+                    <motion.div
+                      key={index}
+                      initial={{ opacity: 0, x: -20 }}
+                      animate={isInView ? { opacity: 1, x: 0 } : {}}
+                      transition={{ delay: 0.4 + index * 0.1 }}
+                      className="flex items-start gap-3"
+                    >
+                      <span className="w-7 h-7 rounded-full bg-[#01503c]/30 text-[#4a7a6c] flex items-center justify-center text-sm font-bold shrink-0 mt-0.5">
+                        {index + 1}
+                      </span>
+                      <div>
+                        <p className="text-white font-medium">{step.title}</p>
+                        <p className="text-zinc-500 text-sm">
+                          {step.description}
+                        </p>
+                      </div>
+                    </motion.div>
+                  ))}
+                </div>
+              </div>
+
+              {/* Buyer Embed */}
+              <motion.div
+                initial={{ opacity: 0, x: 50 }}
+                animate={isInView ? { opacity: 1, x: 0 } : {}}
+                transition={{ delay: 0.5 }}
+                className="rounded-2xl overflow-hidden border border-zinc-800 bg-zinc-900/50"
+              >
+                <iframe
+                  src="https://buyerprequalify.com/widget/?user=chriscrocker&hex=01503c&text=Get%20Pre-Qualified"
+                  style={{ border: "none" }}
+                  scrolling="no"
+                  width="100%"
+                  height="450"
+                  title="Buyer Pre-Qualification"
+                />
+              </motion.div>
+            </div>
           </motion.div>
 
-          {/* Bottom text */}
+          {/* Refinancing Path */}
           <motion.div
-            initial={{ opacity: 0 }}
-            animate={isInView ? { opacity: 1 } : {}}
-            transition={{ duration: 0.6, delay: 0.8 }}
-            className="text-center mt-12"
+            initial={{ opacity: 0, y: 50 }}
+            animate={isInView ? { opacity: 1, y: 0 } : {}}
+            transition={{ duration: 0.6, delay: 0.4 }}
           >
-            <p className="text-zinc-500 text-sm">
-              Both paths lead to the same thing
-            </p>
-            <motion.p
-              className="text-[#4a7a6c] font-semibold text-lg"
-              animate={{
-                textShadow: [
-                  "0 0 0 rgba(74, 122, 108, 0)",
-                  "0 0 20px rgba(74, 122, 108, 0.5)",
-                  "0 0 0 rgba(74, 122, 108, 0)",
-                ],
-              }}
-              transition={{ duration: 2, repeat: Infinity }}
-            >
-              A confident closing
-            </motion.p>
+            <div className="grid lg:grid-cols-2 gap-8 lg:gap-12 items-start">
+              {/* Home Equity Embed - First on desktop for alternating layout */}
+              <motion.div
+                initial={{ opacity: 0, x: -50 }}
+                animate={isInView ? { opacity: 1, x: 0 } : {}}
+                transition={{ delay: 0.6 }}
+                className="rounded-2xl overflow-hidden border border-zinc-800 bg-zinc-900/50 order-2 lg:order-1"
+              >
+                <iframe
+                  src="https://homequityreport.com/widget?user=chriscrocker&hex=01503c"
+                  style={{ border: "none" }}
+                  scrolling="no"
+                  width="100%"
+                  height="450"
+                  title="Home Equity Report"
+                />
+              </motion.div>
+
+              <div className="feature-card rounded-2xl p-8 border border-[#4a7a6c]/20 order-1 lg:order-2">
+                <div className="flex items-center gap-3 mb-6">
+                  <div className="w-14 h-14 rounded-xl bg-gradient-to-br from-[#01503c] to-[#4a7a6c] flex items-center justify-center">
+                    <DollarSign className="w-7 h-7 text-white" />
+                  </div>
+                  <div>
+                    <h3 className="text-2xl font-bold">
+                      Access Cash or Lower Payment
+                    </h3>
+                    <p className="text-zinc-500 text-sm">
+                      Optimize what you already have
+                    </p>
+                  </div>
+                </div>
+
+                <p className="text-zinc-400 mb-6">
+                  Restructuring isn&apos;t about chasing the lowest rate.
+                  It&apos;s about making sure your mortgage still fits your
+                  goals, your timeline, and your financial reality.
+                </p>
+
+                <div className="space-y-4">
+                  {refinancingSteps.map((step, index) => (
+                    <motion.div
+                      key={index}
+                      initial={{ opacity: 0, x: -20 }}
+                      animate={isInView ? { opacity: 1, x: 0 } : {}}
+                      transition={{ delay: 0.7 + index * 0.1 }}
+                      className="flex items-start gap-3"
+                    >
+                      <span className="w-7 h-7 rounded-full bg-[#01503c]/30 text-[#4a7a6c] flex items-center justify-center text-sm font-bold shrink-0 mt-0.5">
+                        {index + 1}
+                      </span>
+                      <div>
+                        <p className="text-white font-medium">{step.title}</p>
+                        <p className="text-zinc-500 text-sm">
+                          {step.description}
+                        </p>
+                      </div>
+                    </motion.div>
+                  ))}
+                </div>
+              </div>
+            </div>
           </motion.div>
         </div>
+
+        {/* Bottom Note */}
+        <motion.p
+          initial={{ opacity: 0 }}
+          animate={isInView ? { opacity: 1 } : {}}
+          transition={{ delay: 1 }}
+          className="text-center text-zinc-500 text-sm mt-16"
+        >
+          Both paths lead to the same thing —{" "}
+          <span className="text-[#4a7a6c] font-semibold">
+            A confident closing
+          </span>
+        </motion.p>
       </div>
     </section>
   );
 }
 
-// Complete Experience Section - 6 Step Process
+// Complete Experience Section - 6 Step Process (Grid Layout)
 function CompleteExperienceSection() {
   const ref = useRef(null);
   const isInView = useInView(ref, { once: true, margin: "-100px" });
@@ -826,47 +848,53 @@ function CompleteExperienceSection() {
       number: 1,
       title: "Strategy & Goal Alignment",
       description:
-        "We start by understanding your goals, timeline, and financial picture to determine the right approach before choosing a loan.",
+        "We start by understanding your goals, timeline, and financial picture to determine the right approach.",
+      icon: Target,
     },
     {
       number: 2,
       title: "Loan Readiness & Options Review",
       description:
-        "Your credit, income, and assets are reviewed to confirm eligibility and outline the best loan structures available.",
+        "Your credit, income, and assets are reviewed to confirm eligibility and outline the best loan structures.",
+      icon: FileText,
     },
     {
       number: 3,
       title: "Rate & Structure Planning",
       description:
-        "We align the loan structure and locking strategy with your timeline, risk tolerance, and objectives.",
+        "We align the loan structure and locking strategy with your timeline and objectives.",
+      icon: TrendingUp,
     },
     {
       number: 4,
       title: "Documentation & Submission",
       description:
-        "Required documents are collected, reviewed, and strategically submitted to the lender best suited for your scenario.",
+        "Required documents are collected and strategically submitted to the lender best suited for your scenario.",
+      icon: CheckCircle2,
     },
     {
       number: 5,
-      title: "Processing, Appraisal & Approval",
+      title: "Processing & Approval",
       description:
-        "The loan moves through processing and underwriting, including appraisal when required, until conditional and final approval are achieved.",
+        "The loan moves through processing and underwriting until conditional and final approval are achieved.",
+      icon: Clock,
     },
     {
       number: 6,
-      title: "Closing, Funding & Ongoing Support",
+      title: "Closing & Ongoing Support",
       description:
-        "Final documents are signed, funds are disbursed, and support continues beyond closing for future planning or changes.",
+        "Final documents are signed, funds are disbursed, and support continues beyond closing.",
+      icon: Award,
     },
   ];
 
   return (
     <section ref={ref} className="py-24 relative overflow-hidden">
       {/* Background elements */}
-      <div className="absolute top-0 right-0 w-96 h-96 bg-[#01503c]/10 rounded-full blur-[120px] pointer-events-none" />
-      <div className="absolute bottom-0 left-0 w-96 h-96 bg-[#4a7a6c]/10 rounded-full blur-[120px] pointer-events-none" />
+      <div className="absolute inset-0 grid-pattern opacity-20" />
+      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[800px] bg-[#01503c]/8 rounded-full blur-[150px] pointer-events-none" />
 
-      <div className="max-w-7xl mx-auto px-6">
+      <div className="max-w-7xl mx-auto px-6 relative">
         {/* Section Header */}
         <motion.div
           initial="hidden"
@@ -895,55 +923,49 @@ function CompleteExperienceSection() {
           </motion.p>
         </motion.div>
 
-        {/* Process Steps */}
-        <div className="max-w-4xl mx-auto">
-          <div className="relative">
-            {/* Vertical Line */}
-            <div className="absolute left-8 top-0 bottom-0 w-px bg-gradient-to-b from-[#01503c] via-[#4a7a6c] to-[#01503c] opacity-30 hidden md:block" />
+        {/* Process Steps Grid */}
+        <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
+          {processSteps.map((step, index) => (
+            <motion.div
+              key={step.number}
+              initial={{ opacity: 0, y: 30 }}
+              animate={isInView ? { opacity: 1, y: 0 } : {}}
+              transition={{ duration: 0.5, delay: index * 0.1 }}
+              whileHover={{ y: -8, scale: 1.02 }}
+              className="feature-card rounded-2xl p-6 relative group overflow-hidden"
+            >
+              {/* Step number badge */}
+              <div className="absolute top-4 right-4 w-10 h-10 rounded-full bg-gradient-to-br from-[#01503c] to-[#4a7a6c] flex items-center justify-center text-lg font-bold text-white opacity-80 group-hover:opacity-100 transition-opacity">
+                {step.number}
+              </div>
 
-            <div className="space-y-6">
-              {processSteps.map((step, index) => (
-                <motion.div
-                  key={step.number}
-                  initial={{ opacity: 0, x: -30 }}
-                  animate={isInView ? { opacity: 1, x: 0 } : {}}
-                  transition={{ duration: 0.5, delay: index * 0.1 }}
-                  className="relative"
-                >
-                  <div className="feature-card rounded-2xl p-6 md:p-8 md:ml-20">
-                    {/* Step Number - Desktop */}
-                    <motion.div
-                      className="hidden md:flex absolute -left-20 top-1/2 -translate-y-1/2 w-16 h-16 rounded-full bg-gradient-to-br from-[#01503c] to-[#4a7a6c] items-center justify-center text-2xl font-bold text-white z-10"
-                      initial={{ scale: 0 }}
-                      animate={isInView ? { scale: 1 } : {}}
-                      transition={{ delay: 0.3 + index * 0.1, type: "spring" }}
-                      whileHover={{ scale: 1.1 }}
-                    >
-                      {step.number}
-                    </motion.div>
+              {/* Icon */}
+              <motion.div
+                className="w-14 h-14 rounded-xl bg-[#01503c]/20 flex items-center justify-center mb-5 group-hover:scale-110 transition-transform duration-300"
+                whileHover={{ rotate: 5 }}
+              >
+                <step.icon className="w-7 h-7 text-[#4a7a6c]" />
+              </motion.div>
 
-                    {/* Step Number - Mobile */}
-                    <div className="md:hidden flex items-center gap-4 mb-4">
-                      <div className="w-10 h-10 rounded-full bg-gradient-to-br from-[#01503c] to-[#4a7a6c] flex items-center justify-center text-lg font-bold text-white">
-                        {step.number}
-                      </div>
-                      <h3 className="text-xl font-semibold">{step.title}</h3>
-                    </div>
+              {/* Content */}
+              <h3 className="text-lg font-semibold mb-2 pr-12 group-hover:text-[#4a7a6c] transition-colors">
+                {step.title}
+              </h3>
+              <p className="text-zinc-400 text-sm leading-relaxed">
+                {step.description}
+              </p>
 
-                    {/* Content */}
-                    <div>
-                      <h3 className="hidden md:block text-xl font-semibold mb-3">
-                        {step.title}
-                      </h3>
-                      <p className="text-zinc-400 leading-relaxed">
-                        {step.description}
-                      </p>
-                    </div>
-                  </div>
-                </motion.div>
-              ))}
-            </div>
-          </div>
+              {/* Hover accent line */}
+              <div className="absolute bottom-0 left-0 right-0 h-1 bg-gradient-to-r from-[#01503c] to-[#4a7a6c] opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
+            </motion.div>
+          ))}
+        </div>
+
+        {/* Connection arrows - desktop only */}
+        <div className="hidden lg:flex justify-center mt-12 gap-4 text-zinc-600">
+          <span className="text-sm">
+            From first call to closing — a guided journey
+          </span>
         </div>
       </div>
     </section>
@@ -1013,7 +1035,11 @@ function LoanTypesSection() {
   ];
 
   return (
-    <section ref={ref} className="py-24 relative overflow-hidden">
+    <section
+      ref={ref}
+      id="loan-types"
+      className="py-24 relative overflow-hidden"
+    >
       {/* Background elements */}
       <div className="absolute inset-0 grid-pattern opacity-20" />
       <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[800px] bg-[#01503c]/5 rounded-full blur-[150px] pointer-events-none" />
@@ -1242,112 +1268,98 @@ function TrustSection() {
 function TestimonialsSection() {
   const ref = useRef(null);
   const isInView = useInView(ref, { once: true, margin: "-100px" });
-  const [currentIndex, setCurrentIndex] = useState(0);
-  const [isAutoPlaying, setIsAutoPlaying] = useState(true);
 
   const reviews = [
     {
       name: "Ritchy V",
       source: "Experience.com",
-      rating: 5,
-      text: "Working with Chris Crocker during the process of closing on our home was truly exceptional. From start to finish, Chris made what could have been a stressful experience feel smooth, organized, and completely manageable. He was always available to answer our questions. His professionalism and genuine dedication to his clients really stand out.",
+      text: "Working with Chris Crocker during the process of closing on our home was truly exceptional. His professionalism and genuine dedication to his clients really stand out.",
     },
     {
       name: "Margaret D",
       source: "Experience.com",
-      rating: 5,
-      text: "Chris Crocker was a very knowledgeable person. He was a pleasure to meet and very happy he was our loan officer. He was very professional and explained our documents completely. He answered every question we had in a timely manner. I never give 5 stars, but he deserves every one of them.",
+      text: "He was very professional and explained our documents completely. He answered every question we had in a timely manner. I never give 5 stars, but he deserves every one of them.",
     },
     {
       name: "Jeffery H",
       source: "Zillow",
-      rating: 5,
-      text: "I recently had the pleasure of working with Chris Crocker to secure a mortgage for my dream home in Santa Monica. Chris was professional, knowledgeable, and a pleasure to work with throughout the entire process. He made the mortgage process so easy and straightforward. I highly recommend Chris Crocker as a lender - he is truly exceptional.",
+      text: "Chris was professional, knowledgeable, and a pleasure to work with throughout the entire process. He made the mortgage process so easy and straightforward.",
     },
     {
       name: "Mark E",
       source: "Experience.com",
-      rating: 5,
-      text: "We actually maintained active applications with 3 different mortgage firms until we had written offers from 2 of the 3. Not only did Active Link smoke the competition, Mr. Crocker distinguished himself with his honesty, diligence, and professionalism. What a pleasure!",
+      text: "Mr. Crocker distinguished himself with his honesty, diligence, and professionalism. What a pleasure!",
     },
     {
       name: "Rodney K",
       source: "Zillow",
-      rating: 5,
-      text: "What impressed me the most about Chris was his genuine commitment to my success. He went above and beyond to navigate any challenges that arose, demonstrating a deep understanding of the industry and a determination to find solutions. His positive attitude made the entire loan process smooth and stress-free.",
+      text: "His genuine commitment to my success was impressive. He went above and beyond to navigate any challenges that arose.",
     },
     {
       name: "Lily",
       source: "Zillow",
-      rating: 5,
-      text: "Very professional and was always available for any questions I had! Working with him was easy, and his whole team was a pleasure. Honestly was very scared as it was my first time getting a home loan but Chris really made me comfortable.",
+      text: "Very professional and was always available for any questions I had! Working with him was easy, and his whole team was a pleasure.",
     },
+  ];
+
+  const reviews2 = [
     {
       name: "Stefanie K",
       source: "Experience.com",
-      rating: 5,
-      text: "Chris Crocker was very helpful during the refi process. He is very knowledgeable and personable. He always went above and beyond to make sure everything went smoothly. A big thank you to Chris! I will refer and recommend him in the future!",
+      text: "Chris Crocker was very helpful during the refi process. He is very knowledgeable and personable. I will refer and recommend him in the future!",
     },
     {
       name: "Sarah Montoya",
       source: "Zillow",
-      rating: 5,
-      text: "Chris was extremely knowledgeable about the mortgage process and helped my wife and I save hundreds of dollars a month! We closed on time and the rate ended up cheaper than he originally quoted.",
+      text: "Chris was extremely knowledgeable and helped my wife and I save hundreds of dollars a month! The rate ended up cheaper than he originally quoted.",
     },
     {
       name: "James M",
       source: "Experience.com",
-      rating: 5,
-      text: "Best experience I have ever had, fast easy kept informed. Chris and Oscar were great and honest throughout the whole process thank you for having people like that.",
+      text: "Best experience I have ever had, fast easy kept informed. Chris and Oscar were great and honest throughout the whole process.",
     },
     {
       name: "Modesto G",
       source: "Experience.com",
-      rating: 5,
-      text: "Chris was so knowledgeable and friendly, he explained to me the whole process of my loan and answered all my questions. He was with me throughout the whole process until my closing date. Nice guy, thank you again.",
+      text: "Chris was so knowledgeable and friendly, he explained to me the whole process of my loan. He was with me throughout until my closing date.",
     },
     {
       name: "Dale M",
       source: "Experience.com",
-      rating: 5,
       text: "I found Mr. Crocker to be professional, informative, and attentive. The next time I have a financial need, I will be contacting him.",
     },
     {
       name: "Rebecca H",
       source: "Zillow",
-      rating: 5,
-      text: "Chris was great to deal with, helped me get lower rate on my FHA loan for my home I purchased at the beginning of 2023. Overall I would recommend for anybody who purchased last year to refinance if they have an FHA loan.",
+      text: "Chris was great to deal with, helped me get lower rate on my FHA loan. I would recommend for anybody who purchased last year to refinance.",
     },
   ];
 
-  // Auto-play carousel
-  useEffect(() => {
-    if (!isAutoPlaying) return;
-    const interval = setInterval(() => {
-      setCurrentIndex((prev) => (prev + 1) % reviews.length);
-    }, 5000);
-    return () => clearInterval(interval);
-  }, [isAutoPlaying, reviews.length]);
-
-  const nextReview = () => {
-    setIsAutoPlaying(false);
-    setCurrentIndex((prev) => (prev + 1) % reviews.length);
-  };
-
-  const prevReview = () => {
-    setIsAutoPlaying(false);
-    setCurrentIndex((prev) => (prev - 1 + reviews.length) % reviews.length);
-  };
-
-  const visibleReviews = [
-    reviews[(currentIndex - 1 + reviews.length) % reviews.length],
-    reviews[currentIndex],
-    reviews[(currentIndex + 1) % reviews.length],
-  ];
+  const ReviewCard = ({
+    review,
+  }: {
+    review: { name: string; source: string; text: string };
+  }) => (
+    <div className="feature-card rounded-xl p-5 min-w-[320px] max-w-[320px] mx-3 shrink-0">
+      <div className="flex items-center gap-1 mb-3">
+        {[...Array(5)].map((_, i) => (
+          <Star key={i} className="w-4 h-4 fill-[#4a7a6c] text-[#4a7a6c]" />
+        ))}
+      </div>
+      <p className="text-zinc-300 text-sm leading-relaxed mb-4 line-clamp-3">
+        &ldquo;{review.text}&rdquo;
+      </p>
+      <div className="flex items-center justify-between">
+        <div>
+          <p className="font-semibold text-white text-sm">{review.name}</p>
+          <p className="text-xs text-zinc-500">{review.source}</p>
+        </div>
+      </div>
+    </div>
+  );
 
   return (
-    <section ref={ref} className="py-24 relative overflow-hidden">
-      {/* Background elements */}
+    <section ref={ref} id="reviews" className="py-24 relative overflow-hidden">
       <div className="absolute top-1/2 left-0 w-96 h-96 bg-[#01503c]/10 rounded-full blur-[120px] pointer-events-none" />
       <div className="absolute top-1/2 right-0 w-96 h-96 bg-[#4a7a6c]/10 rounded-full blur-[120px] pointer-events-none" />
 
@@ -1357,7 +1369,7 @@ function TestimonialsSection() {
           initial="hidden"
           animate={isInView ? "visible" : "hidden"}
           variants={staggerContainer}
-          className="text-center mb-16"
+          className="text-center mb-12"
         >
           <motion.span
             variants={scaleIn}
@@ -1371,20 +1383,12 @@ function TestimonialsSection() {
           >
             What Clients Are Saying
           </motion.h2>
-          <motion.p
-            variants={fadeInUp}
-            className="text-zinc-400 max-w-2xl mx-auto"
-          >
-            Real experiences from real homebuyers and homeowners.
-          </motion.p>
-
-          {/* Stats */}
           <motion.div
             variants={fadeInUp}
-            className="flex items-center justify-center gap-8 mt-8"
+            className="flex items-center justify-center gap-8 mt-6"
           >
-            <div className="text-center">
-              <div className="flex items-center justify-center gap-1 mb-1">
+            <div className="flex items-center gap-2">
+              <div className="flex items-center gap-0.5">
                 {[...Array(5)].map((_, i) => (
                   <Star
                     key={i}
@@ -1392,138 +1396,70 @@ function TestimonialsSection() {
                   />
                 ))}
               </div>
-              <p className="text-zinc-400 text-sm">5.0 Average Rating</p>
+              <span className="text-zinc-400 text-sm">5.0 Rating</span>
             </div>
-            <div className="w-px h-10 bg-zinc-700" />
+            <div className="w-px h-6 bg-zinc-700" />
             <div className="text-center">
-              <p className="text-2xl font-bold text-[#4a7a6c]">50+</p>
-              <p className="text-zinc-400 text-sm">5-Star Reviews</p>
+              <span className="text-[#4a7a6c] font-bold">50+</span>
+              <span className="text-zinc-400 text-sm ml-1">5-Star Reviews</span>
             </div>
           </motion.div>
         </motion.div>
+      </div>
 
-        {/* Reviews Carousel */}
+      {/* Marquee Rows */}
+      <div className="space-y-6 overflow-hidden">
+        {/* Row 1 - Scrolls Left */}
         <div className="relative">
-          {/* Navigation Buttons */}
-          <motion.button
-            onClick={prevReview}
-            className="absolute left-0 top-1/2 -translate-y-1/2 z-10 w-12 h-12 rounded-full bg-zinc-800/80 border border-zinc-700 flex items-center justify-center text-zinc-400 hover:text-white hover:border-[#4a7a6c] transition-all"
-            whileHover={{ scale: 1.1 }}
-            whileTap={{ scale: 0.9 }}
+          <div className="absolute left-0 top-0 bottom-0 w-32 bg-gradient-to-r from-[#0a0a0a] to-transparent z-10" />
+          <div className="absolute right-0 top-0 bottom-0 w-32 bg-gradient-to-l from-[#0a0a0a] to-transparent z-10" />
+          <motion.div
+            className="flex"
+            animate={{ x: [0, -1920] }}
+            transition={{ duration: 25, repeat: Infinity, ease: "linear" }}
           >
-            <ChevronLeft className="w-6 h-6" />
-          </motion.button>
-          <motion.button
-            onClick={nextReview}
-            className="absolute right-0 top-1/2 -translate-y-1/2 z-10 w-12 h-12 rounded-full bg-zinc-800/80 border border-zinc-700 flex items-center justify-center text-zinc-400 hover:text-white hover:border-[#4a7a6c] transition-all"
-            whileHover={{ scale: 1.1 }}
-            whileTap={{ scale: 0.9 }}
-          >
-            <ChevronRight className="w-6 h-6" />
-          </motion.button>
-
-          {/* Cards Container */}
-          <div className="flex items-center justify-center gap-6 px-16">
-            <AnimatePresence mode="popLayout">
-              {visibleReviews.map((review, index) => (
-                <motion.div
-                  key={`${review.name}-${currentIndex}-${index}`}
-                  initial={{
-                    opacity: 0,
-                    scale: 0.8,
-                    x: index === 0 ? -100 : index === 2 ? 100 : 0,
-                  }}
-                  animate={{
-                    opacity: index === 1 ? 1 : 0.5,
-                    scale: index === 1 ? 1 : 0.85,
-                    x: 0,
-                  }}
-                  exit={{ opacity: 0, scale: 0.8 }}
-                  transition={{ duration: 0.4 }}
-                  className={`feature-card rounded-2xl p-8 ${
-                    index === 1 ? "w-full max-w-2xl" : "hidden lg:block w-80"
-                  } ${index === 1 ? "z-10" : "z-0"}`}
-                >
-                  {/* Quote Icon */}
-                  <Quote className="w-10 h-10 text-[#4a7a6c]/30 mb-4" />
-
-                  {/* Stars */}
-                  <div className="flex items-center gap-1 mb-4">
-                    {[...Array(review.rating)].map((_, i) => (
-                      <motion.div
-                        key={i}
-                        initial={{ opacity: 0, scale: 0 }}
-                        animate={{ opacity: 1, scale: 1 }}
-                        transition={{ delay: i * 0.1 }}
-                      >
-                        <Star className="w-5 h-5 fill-[#4a7a6c] text-[#4a7a6c]" />
-                      </motion.div>
-                    ))}
-                  </div>
-
-                  {/* Review Text */}
-                  <p
-                    className={`text-zinc-300 leading-relaxed mb-6 ${
-                      index === 1 ? "text-lg" : "text-sm line-clamp-4"
-                    }`}
-                  >
-                    &ldquo;{review.text}&rdquo;
-                  </p>
-
-                  {/* Reviewer Info */}
-                  <div className="flex items-center justify-between">
-                    <div>
-                      <p className="font-semibold text-white">{review.name}</p>
-                      <p className="text-sm text-zinc-500">{review.source}</p>
-                    </div>
-                    <div className="flex items-center gap-1 px-3 py-1 rounded-full bg-[#01503c]/20 border border-[#4a7a6c]/30">
-                      <Star className="w-4 h-4 fill-[#4a7a6c] text-[#4a7a6c]" />
-                      <span className="text-[#4a7a6c] text-sm font-medium">
-                        5.0
-                      </span>
-                    </div>
-                  </div>
-                </motion.div>
-              ))}
-            </AnimatePresence>
-          </div>
-
-          {/* Dots Indicator */}
-          <div className="flex items-center justify-center gap-2 mt-8">
-            {reviews.map((_, index) => (
-              <button
-                key={index}
-                onClick={() => {
-                  setIsAutoPlaying(false);
-                  setCurrentIndex(index);
-                }}
-                className={`w-2 h-2 rounded-full transition-all duration-300 ${
-                  index === currentIndex
-                    ? "w-8 bg-[#4a7a6c]"
-                    : "bg-zinc-600 hover:bg-zinc-500"
-                }`}
-              />
-            ))}
-          </div>
+            {[...reviews, ...reviews, ...reviews, ...reviews].map(
+              (review, index) => (
+                <ReviewCard key={`row1-${index}`} review={review} />
+              )
+            )}
+          </motion.div>
         </div>
 
-        {/* Review Sources */}
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          animate={isInView ? { opacity: 1, y: 0 } : {}}
-          transition={{ delay: 0.5 }}
-          className="flex items-center justify-center gap-6 mt-12"
-        >
-          <div className="flex items-center gap-2 px-4 py-2 rounded-lg bg-zinc-800/50 border border-zinc-700">
-            <span className="text-zinc-400 text-sm">Reviews from</span>
-            <span className="font-semibold text-white">Experience.com</span>
-          </div>
-          <div className="flex items-center gap-2 px-4 py-2 rounded-lg bg-zinc-800/50 border border-zinc-700">
-            <span className="text-zinc-400 text-sm">Reviews from</span>
-            <span className="font-semibold text-white">Zillow</span>
-          </div>
-        </motion.div>
+        {/* Row 2 - Scrolls Right */}
+        <div className="relative">
+          <div className="absolute left-0 top-0 bottom-0 w-32 bg-gradient-to-r from-[#0a0a0a] to-transparent z-10" />
+          <div className="absolute right-0 top-0 bottom-0 w-32 bg-gradient-to-l from-[#0a0a0a] to-transparent z-10" />
+          <motion.div
+            className="flex"
+            animate={{ x: [-1920, 0] }}
+            transition={{ duration: 25, repeat: Infinity, ease: "linear" }}
+          >
+            {[...reviews2, ...reviews2, ...reviews2, ...reviews2].map(
+              (review, index) => (
+                <ReviewCard key={`row2-${index}`} review={review} />
+              )
+            )}
+          </motion.div>
+        </div>
       </div>
+
+      {/* Review Sources */}
+      <motion.div
+        initial={{ opacity: 0, y: 20 }}
+        animate={isInView ? { opacity: 1, y: 0 } : {}}
+        transition={{ delay: 0.5 }}
+        className="flex items-center justify-center gap-6 mt-12"
+      >
+        <div className="flex items-center gap-2 px-4 py-2 rounded-lg bg-zinc-800/50 border border-zinc-700">
+          <span className="text-zinc-400 text-sm">Reviews from</span>
+          <span className="font-semibold text-white">Experience.com</span>
+        </div>
+        <div className="flex items-center gap-2 px-4 py-2 rounded-lg bg-zinc-800/50 border border-zinc-700">
+          <span className="text-zinc-400 text-sm">Reviews from</span>
+          <span className="font-semibold text-white">Zillow</span>
+        </div>
+      </motion.div>
     </section>
   );
 }
@@ -1563,7 +1499,7 @@ function FAQSection() {
   ];
 
   return (
-    <section ref={ref} className="py-24 relative">
+    <section ref={ref} id="faq" className="py-24 relative">
       <div className="max-w-3xl mx-auto px-6">
         {/* Section Header */}
         <motion.div
@@ -1689,7 +1625,7 @@ function CTASection() {
                 transition={{ delay: 0.4 }}
               >
                 <motion.a
-                  href="https://homequityreport.com/chriscrocker"
+                  href="https://240399.my1003app.com/2264202/register"
                   target="_blank"
                   rel="noopener noreferrer"
                   className="inline-flex items-center gap-2 btn-primary px-8 py-4 rounded-xl text-lg font-medium"
@@ -1728,39 +1664,6 @@ function CTASection() {
 function EmbedsSection() {
   const ref = useRef(null);
   const isInView = useInView(ref, { once: true, margin: "-100px" });
-
-  useEffect(() => {
-    // Load Calendly widget script
-    const script = document.createElement("script");
-    script.src = "https://assets.calendly.com/assets/external/widget.js";
-    script.async = true;
-    document.body.appendChild(script);
-
-    // Load Calendly CSS
-    const link = document.createElement("link");
-    link.href = "https://assets.calendly.com/assets/external/widget.css";
-    link.rel = "stylesheet";
-    document.head.appendChild(link);
-
-    // Initialize Calendly badge widget after script loads
-    script.onload = () => {
-      if (window.Calendly) {
-        window.Calendly.initBadgeWidget({
-          url: "https://calendly.com/chriscrockermortgage/mwm",
-          text: "Loan Strategy Chat",
-          color: "#01503c",
-          textColor: "#ffffff",
-          branding: true,
-        });
-      }
-    };
-
-    return () => {
-      // Cleanup
-      if (script.parentNode) script.parentNode.removeChild(script);
-      if (link.parentNode) link.parentNode.removeChild(link);
-    };
-  }, []);
 
   return (
     <section
@@ -1814,7 +1717,7 @@ function EmbedsSection() {
                 <p className="text-zinc-500 text-sm">For Current Homeowners</p>
               </div>
             </div>
-            <div className="rounded-xl overflow-hidden bg-white">
+            <div className="rounded-xl overflow-hidden">
               <iframe
                 src="https://homequityreport.com/widget?user=chriscrocker&hex=01503c"
                 style={{ border: "none" }}
@@ -1829,7 +1732,7 @@ function EmbedsSection() {
               />
             </div>
             <a
-              href="https://homequityreport.com/chriscrocker"
+              href="https://240399.my1003app.com/2264202/register"
               target="_blank"
               rel="noopener noreferrer"
               className="inline-flex items-center gap-2 text-[#4a7a6c] hover:text-[#6b9a8c] mt-4 text-sm font-medium transition-colors"
@@ -1856,7 +1759,7 @@ function EmbedsSection() {
                 <p className="text-zinc-500 text-sm">For Home Buyers</p>
               </div>
             </div>
-            <div className="rounded-xl overflow-hidden bg-white">
+            <div className="rounded-xl overflow-hidden">
               <iframe
                 src="https://buyerprequalify.com/widget/?user=chriscrocker&hex=01503c&text=Get%20Started"
                 style={{ border: "none" }}
@@ -1880,19 +1783,6 @@ function EmbedsSection() {
             </a>
           </motion.div>
         </div>
-
-        {/* Calendly Info */}
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          animate={isInView ? { opacity: 1, y: 0 } : {}}
-          transition={{ duration: 0.6, delay: 0.4 }}
-          className="mt-8 text-center"
-        >
-          <p className="text-zinc-500 text-sm">
-            The &ldquo;Loan Strategy Chat&rdquo; button in the bottom-right
-            corner opens Calendly scheduling.
-          </p>
-        </motion.div>
       </div>
     </section>
   );
@@ -1914,21 +1804,26 @@ function Footer() {
             viewport={{ once: true }}
             transition={{ duration: 0.5 }}
           >
-            {/* Logo */}
-            <div className="flex items-center gap-3 mb-4">
-              <div className="w-10 h-10 rounded-xl bg-gradient-to-br from-[#01503c] to-[#4a7a6c] flex items-center justify-center">
-                <HomeIcon className="w-5 h-5 text-white" />
-              </div>
-              <div>
-                <span className="font-semibold text-lg">Real Consultants</span>
-                <span className="text-[#4a7a6c] font-medium ml-1">
-                  Mortgage
+            {/* Logo - Same as header */}
+            <div className="mb-4">
+              <div className="flex items-center gap-2 mb-1">
+                <span className="font-semibold text-xl">Chris </span>
+                <span className="text-[#4a7a6c] font-semibold text-xl">
+                  Crocker
                 </span>
+                <span className="text-zinc-500 mx-1">|</span>
+                <a
+                  href="tel:+19802324269"
+                  className="text-zinc-400 hover:text-[#4a7a6c] transition-colors"
+                >
+                  (980) 232-4269
+                </a>
               </div>
+              <div className="text-sm text-zinc-500">Mortgage Advisor</div>
             </div>
 
-            <p className="text-zinc-400 text-sm mb-4">
-              Chris Crocker | NMLS 2264202
+            <p className="text-zinc-400 text-sm mb-2">
+              NMLS 2264202 | Real Consultants Mortgage
             </p>
             <p className="text-zinc-500 text-sm">Equal Housing Lender</p>
           </motion.div>
@@ -1987,9 +1882,9 @@ export default function HomePage() {
       <div className="section-divider" />
       <WhyThisApproachSection />
       <div className="section-divider" />
-      <RoadmapSection />
-      <div className="section-divider" />
       <CompleteExperienceSection />
+      <div className="section-divider" />
+      <RoadmapSection />
       <div className="section-divider" />
       <LoanTypesSection />
       <div className="section-divider" />

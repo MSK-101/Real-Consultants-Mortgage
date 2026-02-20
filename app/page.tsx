@@ -166,7 +166,7 @@ function Header() {
           >
             <div className="flex items-center">
               <span className="font-semibold text-lg sm:text-xl">Chris </span>
-              <span className="text-[#4a7a6c] font-semibold text-lg sm:text-xl">
+              <span className="text-[#4a7a6c] font-bold text-lg sm:text-xl">
                 Crocker
               </span>
             </div>
@@ -1421,7 +1421,7 @@ function TestimonialsSection() {
             {[...reviews, ...reviews, ...reviews, ...reviews].map(
               (review, index) => (
                 <ReviewCard key={`row1-${index}`} review={review} />
-              )
+              ),
             )}
           </motion.div>
         </div>
@@ -1438,7 +1438,7 @@ function TestimonialsSection() {
             {[...reviews2, ...reviews2, ...reviews2, ...reviews2].map(
               (review, index) => (
                 <ReviewCard key={`row2-${index}`} review={review} />
-              )
+              ),
             )}
           </motion.div>
         </div>
@@ -1808,7 +1808,7 @@ function Footer() {
             <div className="mb-4">
               <div className="flex items-center gap-2 mb-1">
                 <span className="font-semibold text-xl">Chris </span>
-                <span className="text-[#4a7a6c] font-semibold text-xl">
+                <span className="text-[#4a7a6c] font-bold text-xl">
                   Crocker
                 </span>
                 <span className="text-zinc-500 mx-1">|</span>

@@ -39,6 +39,7 @@ import {
   Zap,
 } from "lucide-react";
 import Image from "next/image";
+import Link from "next/link";
 
 // Animation variants
 const fadeInUp = {
@@ -211,6 +212,12 @@ function Header() {
           >
             FAQ
           </motion.a>
+          <Link
+            href="/partners"
+            className="text-zinc-400 hover:text-white transition-colors text-sm px-3 py-2"
+          >
+            Partners
+          </Link>
           <motion.a
             href="https://calendly.com/chriscrockermortgage/mwm"
             target="_blank"
@@ -272,6 +279,13 @@ function Header() {
               >
                 FAQ
               </a>
+              <Link
+                href="/partners"
+                className="text-zinc-400 hover:text-white py-2"
+                onClick={() => setMobileMenuOpen(false)}
+              >
+                Partners
+              </Link>
               <a
                 href="https://calendly.com/chriscrockermortgage/mwm"
                 target="_blank"

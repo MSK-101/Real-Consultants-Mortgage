@@ -486,60 +486,65 @@ function PartnersSection() {
   );
 }
 
-// Why Choose Us - Horizontal layout
+// Why Choose Us - Split layout with checklist
 function WhyChooseUsSection() {
   const ref = useRef(null);
   const isInView = useInView(ref, { once: true, margin: "-100px" });
 
   const reasons = [
-    { icon: MessageSquare, text: "Transparent communication at every stage", highlight: "Transparent" },
-    { icon: Zap, text: "Fast response times", highlight: "Fast" },
-    { icon: Sparkles, text: "Creative structuring when others say \"no\"", highlight: "Creative" },
-    { icon: Clock, text: "In-house systems to track and update deals", highlight: "Organized" },
-    { icon: Users, text: "Respect for your client relationships", highlight: "Respectful" },
+    "Transparent communication at every stage",
+    "Fast response times",
+    "Creative structuring when others say \"no\"",
+    "In-house systems to track and update deals",
+    "Respect for your client relationships",
   ];
 
   return (
     <section ref={ref} className="py-24 relative overflow-hidden">
-      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[400px] bg-[#01503c]/10 rounded-full blur-[150px] pointer-events-none" />
-      
-      <div className="max-w-7xl mx-auto px-6 relative">
-        <motion.div
-          initial={{ opacity: 0, y: 30 }}
-          animate={isInView ? { opacity: 1, y: 0 } : {}}
-          className="mb-16"
-        >
-          <span className="inline-block px-4 py-1.5 rounded-full bg-[#01503c]/20 text-[#4a7a6c] text-xs uppercase tracking-wider font-medium mb-6">
-            Why Work With Us
-          </span>
-          <div className="grid lg:grid-cols-2 gap-8 items-end">
-            <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold">
-              Why Professionals Choose Us
+      <div className="max-w-6xl mx-auto px-6 relative">
+        <div className="grid lg:grid-cols-2 gap-12 lg:gap-20 items-center">
+          {/* Left - Big statement */}
+          <motion.div
+            initial={{ opacity: 0, x: -40 }}
+            animate={isInView ? { opacity: 1, x: 0 } : {}}
+            transition={{ duration: 0.6 }}
+          >
+            <span className="inline-block px-4 py-1.5 rounded-full bg-[#01503c]/20 text-[#4a7a6c] text-xs uppercase tracking-wider font-medium mb-6">
+              Why Work With Us
+            </span>
+            <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold mb-6 leading-tight">
+              We&apos;re not here to cross-sell your book of business.
             </h2>
-            <p className="text-zinc-400 text-lg">
-              We are not here to &ldquo;cross-sell&rdquo; your book of business. 
-              <span className="text-[#4a7a6c] font-medium"> We are here to protect it.</span>
-            </p>
-          </div>
-        </motion.div>
+            <div className="relative">
+              <div className="absolute -left-4 top-0 bottom-0 w-1 bg-gradient-to-b from-[#01503c] to-[#4a7a6c] rounded-full" />
+              <p className="text-2xl sm:text-3xl font-semibold text-[#4a7a6c] pl-4">
+                We&apos;re here to protect it.
+              </p>
+            </div>
+          </motion.div>
 
-        <div className="flex flex-wrap gap-4 justify-center">
-          {reasons.map((reason, index) => (
-            <motion.div
-              key={index}
-              initial={{ opacity: 0, y: 30 }}
-              animate={isInView ? { opacity: 1, y: 0 } : {}}
-              transition={{ delay: 0.1 + index * 0.1 }}
-              whileHover={{ y: -8, scale: 1.02 }}
-              className="feature-card rounded-2xl p-6 border border-[#4a7a6c]/20 flex-1 min-w-[200px] max-w-[280px]"
-            >
-              <div className="w-12 h-12 rounded-xl bg-gradient-to-br from-[#01503c] to-[#4a7a6c] flex items-center justify-center mb-4">
-                <reason.icon className="w-6 h-6 text-white" />
-              </div>
-              <h3 className="text-xl font-bold text-[#4a7a6c] mb-2">{reason.highlight}</h3>
-              <p className="text-zinc-400 text-sm">{reason.text}</p>
-            </motion.div>
-          ))}
+          {/* Right - Simple checklist */}
+          <motion.div
+            initial={{ opacity: 0, x: 40 }}
+            animate={isInView ? { opacity: 1, x: 0 } : {}}
+            transition={{ duration: 0.6, delay: 0.2 }}
+            className="space-y-4"
+          >
+            {reasons.map((reason, index) => (
+              <motion.div
+                key={index}
+                initial={{ opacity: 0, x: 20 }}
+                animate={isInView ? { opacity: 1, x: 0 } : {}}
+                transition={{ delay: 0.3 + index * 0.1 }}
+                className="flex items-center gap-4 py-3 border-b border-zinc-800 last:border-0"
+              >
+                <div className="w-6 h-6 rounded-full bg-[#01503c]/30 flex items-center justify-center shrink-0">
+                  <CheckCircle2 className="w-4 h-4 text-[#4a7a6c]" />
+                </div>
+                <span className="text-zinc-300 text-lg">{reason}</span>
+              </motion.div>
+            ))}
+          </motion.div>
         </div>
       </div>
     </section>

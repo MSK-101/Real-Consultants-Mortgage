@@ -21,53 +21,11 @@ import {
   Handshake,
   Mail,
   ChevronRight,
+  Sparkles,
+  Target,
+  TrendingUp,
 } from "lucide-react";
 import Link from "next/link";
-
-// Animation variants
-const fadeInUp = {
-  hidden: { opacity: 0, y: 40 },
-  visible: { 
-    opacity: 1, 
-    y: 0,
-    transition: { duration: 0.6 }
-  },
-};
-
-const fadeInDown = {
-  hidden: { opacity: 0, y: -40 },
-  visible: { 
-    opacity: 1, 
-    y: 0,
-    transition: { duration: 0.6 }
-  },
-};
-
-const staggerContainer = {
-  hidden: { opacity: 0 },
-  visible: {
-    opacity: 1,
-    transition: { staggerChildren: 0.1, delayChildren: 0.1 }
-  },
-};
-
-const staggerItem = {
-  hidden: { opacity: 0, y: 20 },
-  visible: { 
-    opacity: 1, 
-    y: 0,
-    transition: { duration: 0.5 }
-  },
-};
-
-const scaleIn = {
-  hidden: { opacity: 0, scale: 0.8 },
-  visible: { 
-    opacity: 1, 
-    scale: 1,
-    transition: { duration: 0.5 }
-  },
-};
 
 // Header Component
 function Header() {
@@ -210,7 +168,7 @@ function Header() {
   );
 }
 
-// Hero Section
+// Hero Section - Split layout design
 function HeroSection() {
   const ref = useRef(null);
   const isInView = useInView(ref, { once: true });
@@ -218,168 +176,158 @@ function HeroSection() {
   return (
     <section
       ref={ref}
-      className="relative min-h-[70vh] pt-32 pb-20 overflow-hidden flex items-center"
+      className="relative min-h-screen pt-24 pb-12 overflow-hidden flex items-center"
     >
-      {/* Animated background orbs */}
-      <div className="orb orb-1" />
-      <div className="orb orb-2" />
-      
-      {/* Background effects */}
-      <div className="absolute inset-0 grid-pattern opacity-40" />
-      <div className="absolute inset-0 radial-gradient" />
+      <div className="absolute inset-0 grid-pattern opacity-30" />
+      <div className="absolute top-20 right-0 w-[500px] h-[500px] bg-[#01503c]/20 rounded-full blur-[150px] pointer-events-none" />
+      <div className="absolute bottom-0 left-0 w-[400px] h-[400px] bg-[#4a7a6c]/10 rounded-full blur-[120px] pointer-events-none" />
 
       <div className="relative max-w-7xl mx-auto px-6 w-full">
-        <motion.div
-          initial="hidden"
-          animate={isInView ? "visible" : "hidden"}
-          variants={staggerContainer}
-          className="text-center max-w-4xl mx-auto"
-        >
-          {/* Badge */}
-          <motion.div 
-            variants={fadeInDown}
-            className="mb-8 inline-flex items-center gap-2"
+        <div className="grid lg:grid-cols-2 gap-16 items-center">
+          {/* Left content */}
+          <motion.div
+            initial={{ opacity: 0, x: -50 }}
+            animate={isInView ? { opacity: 1, x: 0 } : {}}
+            transition={{ duration: 0.7 }}
           >
-            <motion.span 
-              className="inline-flex items-center gap-2 px-4 py-2 rounded-full border border-[#4a7a6c]/30 bg-[#01503c]/10 text-sm"
-              animate={{ 
-                boxShadow: [
-                  "0 0 0 rgba(74, 122, 108, 0)",
-                  "0 0 20px rgba(74, 122, 108, 0.3)",
-                  "0 0 0 rgba(74, 122, 108, 0)",
-                ]
-              }}
-              transition={{ duration: 2, repeat: Infinity }}
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              animate={isInView ? { opacity: 1, y: 0 } : {}}
+              transition={{ delay: 0.2 }}
+              className="inline-flex items-center gap-2 px-4 py-2 rounded-full border border-[#4a7a6c]/30 bg-[#01503c]/10 text-sm mb-8"
             >
               <Handshake className="w-4 h-4 text-[#4a7a6c]" />
               <span className="text-[#4a7a6c]">Strategic Partnerships</span>
-            </motion.span>
+            </motion.div>
+
+            <motion.h1
+              initial={{ opacity: 0, y: 30 }}
+              animate={isInView ? { opacity: 1, y: 0 } : {}}
+              transition={{ delay: 0.3 }}
+              className="text-4xl sm:text-5xl lg:text-6xl font-bold leading-tight mb-6"
+            >
+              We Don&apos;t Just
+              <br />
+              Close Loans.
+              <br />
+              <span className="gradient-text">We Build Ecosystems.</span>
+            </motion.h1>
+
+            <motion.p
+              initial={{ opacity: 0, y: 30 }}
+              animate={isInView ? { opacity: 1, y: 0 } : {}}
+              transition={{ delay: 0.4 }}
+              className="text-lg text-zinc-400 mb-10 max-w-lg"
+            >
+              We work alongside top-tier real estate and financial professionals 
+              to deliver seamless transactions, protect client relationships, 
+              and create long-term value for everyone involved.
+            </motion.p>
+
+            <motion.div
+              initial={{ opacity: 0, y: 30 }}
+              animate={isInView ? { opacity: 1, y: 0 } : {}}
+              transition={{ delay: 0.5 }}
+              className="flex flex-wrap gap-4"
+            >
+              <motion.a
+                href="https://calendly.com/chriscrockermortgage/mwm"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-flex items-center gap-2 btn-primary px-6 py-3.5 rounded-xl font-medium"
+                whileHover={{ scale: 1.05 }}
+                whileTap={{ scale: 0.95 }}
+              >
+                Schedule a Partner Call
+                <ArrowRight size={18} />
+              </motion.a>
+              <motion.a
+                href="mailto:chris@chrislending.com"
+                className="inline-flex items-center gap-2 btn-secondary px-6 py-3.5 rounded-xl font-medium"
+                whileHover={{ scale: 1.05 }}
+                whileTap={{ scale: 0.95 }}
+              >
+                <Mail size={18} />
+                Email Us
+              </motion.a>
+            </motion.div>
           </motion.div>
 
-          {/* Main heading */}
-          <motion.h1
-            variants={fadeInUp}
-            className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold leading-tight mb-6"
+          {/* Right - Stats/Value props in bento style */}
+          <motion.div
+            initial={{ opacity: 0, x: 50 }}
+            animate={isInView ? { opacity: 1, x: 0 } : {}}
+            transition={{ duration: 0.7, delay: 0.3 }}
+            className="grid grid-cols-2 gap-4"
           >
-            We Don&apos;t Just Close Loans.{" "}
-            <span className="gradient-text">We Build Ecosystems.</span>
-          </motion.h1>
-
-          {/* Subtitle */}
-          <motion.p
-            variants={fadeInUp}
-            className="text-lg sm:text-xl text-zinc-400 mb-10 max-w-3xl mx-auto"
-          >
-            We work alongside top-tier real estate and financial professionals to deliver seamless transactions, 
-            protect client relationships, and create long-term value for everyone involved.
-          </motion.p>
-
-          {/* CTA Buttons */}
-          <motion.div 
-            variants={fadeInUp} 
-            className="flex flex-col sm:flex-row items-center justify-center gap-4"
-          >
-            <motion.a
-              href="https://calendly.com/chriscrockermortgage/mwm"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="inline-flex items-center gap-2 btn-primary px-8 py-4 rounded-xl text-lg font-medium"
-              whileHover={{ scale: 1.05, y: -3 }}
-              whileTap={{ scale: 0.95 }}
+            <motion.div
+              whileHover={{ y: -5 }}
+              className="col-span-2 feature-card rounded-2xl p-6 border border-[#4a7a6c]/20"
             >
-              Schedule a Partner Call
-              <motion.span
-                animate={{ x: [0, 5, 0] }}
-                transition={{ duration: 1.5, repeat: Infinity }}
-              >
-                <ArrowRight size={20} />
-              </motion.span>
-            </motion.a>
-            <motion.a
-              href="mailto:chris@chrislending.com"
-              className="inline-flex items-center gap-2 btn-secondary px-8 py-4 rounded-xl text-lg font-medium"
-              whileHover={{ scale: 1.05, y: -3 }}
-              whileTap={{ scale: 0.95 }}
-            >
-              <Mail size={20} />
-              Become a Strategic Partner
-            </motion.a>
-          </motion.div>
-        </motion.div>
-      </div>
-    </section>
-  );
-}
-
-// Philosophy Section
-function PhilosophySection() {
-  const ref = useRef(null);
-  const isInView = useInView(ref, { once: true, margin: "-100px" });
-
-  const points = [
-    "When you refer a client, you're putting your name on the line. We treat that seriously.",
-    "Our role isn't to \"take over\" your client. It's to enhance your relationship and make you look like the hero.",
-    "Clear communication. Fast structuring. No last-minute surprises.",
-    "We operate like a private advisory desk — not a call center.",
-  ];
-
-  return (
-    <section ref={ref} className="py-24 relative overflow-hidden">
-      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] bg-[#01503c]/10 rounded-full blur-[120px] pointer-events-none" />
-      
-      <div className="max-w-7xl mx-auto px-6 relative">
-        <motion.div
-          initial="hidden"
-          animate={isInView ? "visible" : "hidden"}
-          variants={staggerContainer}
-          className="max-w-4xl mx-auto"
-        >
-          <motion.span 
-            variants={scaleIn}
-            className="inline-block px-4 py-1.5 rounded-full bg-[#01503c]/20 text-[#4a7a6c] text-xs uppercase tracking-wider font-medium mb-6"
-          >
-            Our Philosophy
-          </motion.span>
-          
-          <motion.h2 
-            variants={fadeInUp}
-            className="text-3xl sm:text-4xl md:text-5xl font-bold mb-6"
-          >
-            In this business, <span className="gradient-text">reputation is everything.</span>
-          </motion.h2>
-
-          <div className="space-y-4 mt-10">
-            {points.map((point, index) => (
-              <motion.div
-                key={index}
-                initial={{ opacity: 0, x: -30 }}
-                animate={isInView ? { opacity: 1, x: 0 } : {}}
-                transition={{ delay: 0.2 + index * 0.1 }}
-                className="flex items-start gap-4 feature-card rounded-xl p-5"
-              >
-                <div className="w-8 h-8 rounded-full bg-[#01503c]/30 flex items-center justify-center shrink-0 mt-0.5">
-                  <CheckCircle2 className="w-5 h-5 text-[#4a7a6c]" />
+              <div className="flex items-start gap-4">
+                <div className="w-12 h-12 rounded-xl bg-gradient-to-br from-[#01503c] to-[#4a7a6c] flex items-center justify-center shrink-0">
+                  <Shield className="w-6 h-6 text-white" />
                 </div>
-                <p className="text-zinc-300 text-lg">{point}</p>
-              </motion.div>
-            ))}
-          </div>
-        </motion.div>
+                <div>
+                  <h3 className="text-lg font-semibold mb-1">Reputation First</h3>
+                  <p className="text-zinc-400 text-sm">When you refer a client, you&apos;re putting your name on the line. We treat that seriously.</p>
+                </div>
+              </div>
+            </motion.div>
+
+            <motion.div
+              whileHover={{ y: -5 }}
+              className="feature-card rounded-2xl p-5 border border-[#4a7a6c]/20"
+            >
+              <Target className="w-8 h-8 text-[#4a7a6c] mb-3" />
+              <h3 className="font-semibold mb-1">Private Advisory</h3>
+              <p className="text-zinc-500 text-sm">Not a call center</p>
+            </motion.div>
+
+            <motion.div
+              whileHover={{ y: -5 }}
+              className="feature-card rounded-2xl p-5 border border-[#4a7a6c]/20"
+            >
+              <Zap className="w-8 h-8 text-[#4a7a6c] mb-3" />
+              <h3 className="font-semibold mb-1">Fast Structuring</h3>
+              <p className="text-zinc-500 text-sm">No last-minute surprises</p>
+            </motion.div>
+
+            <motion.div
+              whileHover={{ y: -5 }}
+              className="feature-card rounded-2xl p-5 border border-[#4a7a6c]/20"
+            >
+              <MessageSquare className="w-8 h-8 text-[#4a7a6c] mb-3" />
+              <h3 className="font-semibold mb-1">Clear Updates</h3>
+              <p className="text-zinc-500 text-sm">Every milestone</p>
+            </motion.div>
+
+            <motion.div
+              whileHover={{ y: -5 }}
+              className="feature-card rounded-2xl p-5 border border-[#4a7a6c]/20"
+            >
+              <TrendingUp className="w-8 h-8 text-[#4a7a6c] mb-3" />
+              <h3 className="font-semibold mb-1">Make You Shine</h3>
+              <p className="text-zinc-500 text-sm">Be the hero</p>
+            </motion.div>
+          </motion.div>
+        </div>
       </div>
     </section>
   );
 }
 
-// Partners Section
+// Partners Section - Tabbed interface
 function PartnersSection() {
   const ref = useRef(null);
   const isInView = useInView(ref, { once: true, margin: "-100px" });
+  const [activeTab, setActiveTab] = useState(0);
 
   const partners = [
     {
       title: "Real Estate Agents",
       icon: HomeIcon,
-      description: "We help agents close deals with confidence.",
+      color: "from-emerald-500 to-teal-600",
       benefits: [
         "Pre-approve buyers properly (not pre-qualify loosely)",
         "Structure offers strategically",
@@ -389,9 +337,9 @@ function PartnersSection() {
       tagline: "You focus on negotiating and finding the property. We handle the capital.",
     },
     {
-      title: "Contractors & Renovation Companies",
+      title: "Contractors & Renovation",
       icon: Hammer,
-      description: "Funding solutions for renovation projects.",
+      color: "from-amber-500 to-orange-600",
       benefits: [
         "Renovation financing",
         "Construction-to-permanent loans",
@@ -403,7 +351,7 @@ function PartnersSection() {
     {
       title: "Construction Companies",
       icon: Building2,
-      description: "For builders and developers.",
+      color: "from-blue-500 to-indigo-600",
       benefits: [
         "Ground-up construction financing",
         "Spec build funding",
@@ -415,7 +363,7 @@ function PartnersSection() {
     {
       title: "Attorneys",
       icon: Scale,
-      description: "Real Estate & Estate Planning collaboration.",
+      color: "from-purple-500 to-violet-600",
       benefits: [
         "Probate property sales",
         "Trust transfers",
@@ -427,7 +375,7 @@ function PartnersSection() {
     {
       title: "CPAs & Financial Advisors",
       icon: Calculator,
-      description: "Support for wealth-building conversations.",
+      color: "from-rose-500 to-pink-600",
       benefits: [
         "Strategic refinancing analysis",
         "Equity leverage planning",
@@ -438,205 +386,277 @@ function PartnersSection() {
     },
   ];
 
+  const currentPartner = partners[activeTab];
+  const IconComponent = currentPartner.icon;
+
   return (
     <section ref={ref} id="who-we-partner" className="py-24 relative overflow-hidden">
-      <div className="absolute inset-0 grid-pattern opacity-20" />
+      <div className="absolute inset-0 grid-pattern opacity-10" />
       
       <div className="max-w-7xl mx-auto px-6 relative">
         <motion.div
-          initial="hidden"
-          animate={isInView ? "visible" : "hidden"}
-          variants={staggerContainer}
+          initial={{ opacity: 0, y: 30 }}
+          animate={isInView ? { opacity: 1, y: 0 } : {}}
           className="text-center mb-16"
         >
-          <motion.span 
-            variants={scaleIn}
-            className="inline-block px-4 py-1.5 rounded-full bg-[#01503c]/20 text-[#4a7a6c] text-xs uppercase tracking-wider font-medium mb-6"
-          >
+          <span className="inline-block px-4 py-1.5 rounded-full bg-[#01503c]/20 text-[#4a7a6c] text-xs uppercase tracking-wider font-medium mb-6">
             Who We Partner With
-          </motion.span>
-          <motion.h2 
-            variants={fadeInUp}
-            className="text-3xl sm:text-4xl md:text-5xl font-bold mb-4"
-          >
+          </span>
+          <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold">
             Built for Professionals Who{" "}
             <span className="gradient-text">Expect Excellence</span>
-          </motion.h2>
+          </h2>
         </motion.div>
 
-        <div className="space-y-8">
-          {partners.map((partner, index) => (
-            <motion.div
-              key={partner.title}
-              initial={{ opacity: 0, y: 30 }}
-              animate={isInView ? { opacity: 1, y: 0 } : {}}
-              transition={{ delay: 0.2 + index * 0.1 }}
-              className="feature-card rounded-2xl p-8 border border-[#4a7a6c]/20"
-            >
-              <div className="grid lg:grid-cols-2 gap-8 items-start">
-                <div>
-                  <div className="flex items-center gap-4 mb-4">
-                    <div className="w-14 h-14 rounded-xl bg-gradient-to-br from-[#01503c] to-[#4a7a6c] flex items-center justify-center">
-                      <partner.icon className="w-7 h-7 text-white" />
-                    </div>
-                    <div>
-                      <h3 className="text-2xl font-bold">{partner.title}</h3>
-                      <p className="text-zinc-500">{partner.description}</p>
-                    </div>
+        <div className="grid lg:grid-cols-12 gap-8">
+          {/* Tab buttons */}
+          <motion.div
+            initial={{ opacity: 0, x: -30 }}
+            animate={isInView ? { opacity: 1, x: 0 } : {}}
+            transition={{ delay: 0.2 }}
+            className="lg:col-span-4 space-y-2"
+          >
+            {partners.map((partner, index) => (
+              <motion.button
+                key={partner.title}
+                onClick={() => setActiveTab(index)}
+                className={`w-full text-left px-5 py-4 rounded-xl transition-all duration-300 flex items-center gap-4 ${
+                  activeTab === index
+                    ? "bg-[#01503c]/30 border border-[#4a7a6c]/40"
+                    : "hover:bg-zinc-800/50 border border-transparent"
+                }`}
+                whileHover={{ x: activeTab === index ? 0 : 5 }}
+              >
+                <div className={`w-10 h-10 rounded-lg bg-gradient-to-br ${partner.color} flex items-center justify-center shrink-0`}>
+                  <partner.icon className="w-5 h-5 text-white" />
+                </div>
+                <span className={`font-medium ${activeTab === index ? "text-white" : "text-zinc-400"}`}>
+                  {partner.title}
+                </span>
+                {activeTab === index && (
+                  <ChevronRight className="w-5 h-5 text-[#4a7a6c] ml-auto" />
+                )}
+              </motion.button>
+            ))}
+          </motion.div>
+
+          {/* Content area */}
+          <motion.div
+            initial={{ opacity: 0, x: 30 }}
+            animate={isInView ? { opacity: 1, x: 0 } : {}}
+            transition={{ delay: 0.3 }}
+            className="lg:col-span-8"
+          >
+            <AnimatePresence mode="wait">
+              <motion.div
+                key={activeTab}
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                exit={{ opacity: 0, y: -20 }}
+                transition={{ duration: 0.3 }}
+                className="feature-card rounded-2xl p-8 md:p-10 border border-[#4a7a6c]/20 h-full"
+              >
+                <div className="flex items-center gap-4 mb-6">
+                  <div className={`w-16 h-16 rounded-2xl bg-gradient-to-br ${currentPartner.color} flex items-center justify-center`}>
+                    <IconComponent className="w-8 h-8 text-white" />
                   </div>
-                  <p className="text-[#4a7a6c] font-medium mt-4 italic">
-                    &ldquo;{partner.tagline}&rdquo;
-                  </p>
+                  <h3 className="text-2xl md:text-3xl font-bold">{currentPartner.title}</h3>
                 </div>
 
-                <div className="space-y-3">
-                  <p className="text-zinc-400 text-sm uppercase tracking-wider mb-3">We help with:</p>
-                  {partner.benefits.map((benefit, i) => (
-                    <div key={i} className="flex items-center gap-3">
-                      <ChevronRight className="w-5 h-5 text-[#4a7a6c] shrink-0" />
+                <div className="grid sm:grid-cols-2 gap-4 mb-8">
+                  {currentPartner.benefits.map((benefit, i) => (
+                    <motion.div
+                      key={i}
+                      initial={{ opacity: 0, x: -10 }}
+                      animate={{ opacity: 1, x: 0 }}
+                      transition={{ delay: i * 0.1 }}
+                      className="flex items-start gap-3 bg-zinc-800/30 rounded-lg p-4"
+                    >
+                      <CheckCircle2 className="w-5 h-5 text-[#4a7a6c] shrink-0 mt-0.5" />
                       <span className="text-zinc-300">{benefit}</span>
-                    </div>
+                    </motion.div>
                   ))}
                 </div>
-              </div>
-            </motion.div>
-          ))}
+
+                <div className="border-t border-zinc-800 pt-6">
+                  <p className="text-lg text-[#4a7a6c] italic">
+                    &ldquo;{currentPartner.tagline}&rdquo;
+                  </p>
+                </div>
+              </motion.div>
+            </AnimatePresence>
+          </motion.div>
         </div>
       </div>
     </section>
   );
 }
 
-// Why Choose Us Section
+// Why Choose Us - Horizontal layout
 function WhyChooseUsSection() {
   const ref = useRef(null);
   const isInView = useInView(ref, { once: true, margin: "-100px" });
 
   const reasons = [
-    { icon: MessageSquare, text: "Transparent communication at every stage" },
-    { icon: Zap, text: "Fast response times" },
-    { icon: Shield, text: "Creative structuring when others say \"no\"" },
-    { icon: Clock, text: "In-house systems to track and update deals" },
-    { icon: Users, text: "Respect for your client relationships" },
+    { icon: MessageSquare, text: "Transparent communication at every stage", highlight: "Transparent" },
+    { icon: Zap, text: "Fast response times", highlight: "Fast" },
+    { icon: Sparkles, text: "Creative structuring when others say \"no\"", highlight: "Creative" },
+    { icon: Clock, text: "In-house systems to track and update deals", highlight: "Organized" },
+    { icon: Users, text: "Respect for your client relationships", highlight: "Respectful" },
   ];
 
   return (
     <section ref={ref} className="py-24 relative overflow-hidden">
-      <div className="absolute top-0 right-0 w-96 h-96 bg-[#01503c]/10 rounded-full blur-[120px] pointer-events-none" />
+      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[400px] bg-[#01503c]/10 rounded-full blur-[150px] pointer-events-none" />
       
       <div className="max-w-7xl mx-auto px-6 relative">
         <motion.div
-          initial="hidden"
-          animate={isInView ? "visible" : "hidden"}
-          variants={staggerContainer}
-          className="text-center mb-16"
+          initial={{ opacity: 0, y: 30 }}
+          animate={isInView ? { opacity: 1, y: 0 } : {}}
+          className="mb-16"
         >
-          <motion.span 
-            variants={scaleIn}
-            className="inline-block px-4 py-1.5 rounded-full bg-[#01503c]/20 text-[#4a7a6c] text-xs uppercase tracking-wider font-medium mb-6"
-          >
+          <span className="inline-block px-4 py-1.5 rounded-full bg-[#01503c]/20 text-[#4a7a6c] text-xs uppercase tracking-wider font-medium mb-6">
             Why Work With Us
-          </motion.span>
-          <motion.h2 
-            variants={fadeInUp}
-            className="text-3xl sm:text-4xl md:text-5xl font-bold mb-4"
-          >
-            Why Professionals Choose to Work With Us
-          </motion.h2>
+          </span>
+          <div className="grid lg:grid-cols-2 gap-8 items-end">
+            <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold">
+              Why Professionals Choose Us
+            </h2>
+            <p className="text-zinc-400 text-lg">
+              We are not here to &ldquo;cross-sell&rdquo; your book of business. 
+              <span className="text-[#4a7a6c] font-medium"> We are here to protect it.</span>
+            </p>
+          </div>
         </motion.div>
 
-        <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6 max-w-5xl mx-auto">
+        <div className="flex flex-wrap gap-4 justify-center">
           {reasons.map((reason, index) => (
             <motion.div
               key={index}
-              initial={{ opacity: 0, y: 20 }}
+              initial={{ opacity: 0, y: 30 }}
               animate={isInView ? { opacity: 1, y: 0 } : {}}
-              transition={{ delay: 0.2 + index * 0.1 }}
-              whileHover={{ y: -5, scale: 1.02 }}
-              className="feature-card rounded-xl p-6 text-center"
+              transition={{ delay: 0.1 + index * 0.1 }}
+              whileHover={{ y: -8, scale: 1.02 }}
+              className="feature-card rounded-2xl p-6 border border-[#4a7a6c]/20 flex-1 min-w-[200px] max-w-[280px]"
             >
-              <div className="w-12 h-12 rounded-xl bg-[#01503c]/20 flex items-center justify-center mx-auto mb-4">
-                <reason.icon className="w-6 h-6 text-[#4a7a6c]" />
+              <div className="w-12 h-12 rounded-xl bg-gradient-to-br from-[#01503c] to-[#4a7a6c] flex items-center justify-center mb-4">
+                <reason.icon className="w-6 h-6 text-white" />
               </div>
-              <p className="text-zinc-300">{reason.text}</p>
+              <h3 className="text-xl font-bold text-[#4a7a6c] mb-2">{reason.highlight}</h3>
+              <p className="text-zinc-400 text-sm">{reason.text}</p>
             </motion.div>
           ))}
         </div>
-
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          animate={isInView ? { opacity: 1, y: 0 } : {}}
-          transition={{ delay: 0.7 }}
-          className="text-center mt-12"
-        >
-          <p className="text-xl text-zinc-400">
-            We are not here to &ldquo;cross-sell&rdquo; your book of business.
-          </p>
-          <p className="text-2xl font-semibold text-[#4a7a6c] mt-2">
-            We are here to protect it.
-          </p>
-        </motion.div>
       </div>
     </section>
   );
 }
 
-// Process Section
+// Process Section - Timeline style
 function ProcessSection() {
   const ref = useRef(null);
   const isInView = useInView(ref, { once: true, margin: "-100px" });
 
   const steps = [
-    { number: 1, title: "Introduce Us", description: "Send an email or text introducing us to your client" },
-    { number: 2, title: "Strategy Call", description: "We schedule a strategy call with your client" },
-    { number: 3, title: "Stay Updated", description: "You're updated at every milestone" },
-    { number: 4, title: "Clean Close", description: "We close cleanly and follow up long term" },
+    { 
+      number: "01", 
+      title: "Introduce Us", 
+      description: "Send an email or text introducing us to your client",
+      icon: Mail
+    },
+    { 
+      number: "02", 
+      title: "Strategy Call", 
+      description: "We schedule a strategy call with your client",
+      icon: Phone
+    },
+    { 
+      number: "03", 
+      title: "Stay Updated", 
+      description: "You're updated at every milestone",
+      icon: MessageSquare
+    },
+    { 
+      number: "04", 
+      title: "Clean Close", 
+      description: "We close cleanly and follow up long term",
+      icon: CheckCircle2
+    },
   ];
 
   return (
-    <section ref={ref} id="process" className="py-24 relative overflow-hidden">
-      <div className="max-w-7xl mx-auto px-6">
+    <section ref={ref} id="process" className="py-24 relative overflow-hidden bg-zinc-900/50">
+      <div className="absolute inset-0 grid-pattern opacity-20" />
+      
+      <div className="max-w-7xl mx-auto px-6 relative">
         <motion.div
-          initial="hidden"
-          animate={isInView ? "visible" : "hidden"}
-          variants={staggerContainer}
+          initial={{ opacity: 0, y: 30 }}
+          animate={isInView ? { opacity: 1, y: 0 } : {}}
           className="text-center mb-16"
         >
-          <motion.span 
-            variants={scaleIn}
-            className="inline-block px-4 py-1.5 rounded-full bg-[#01503c]/20 text-[#4a7a6c] text-xs uppercase tracking-wider font-medium mb-6"
-          >
+          <span className="inline-block px-4 py-1.5 rounded-full bg-[#01503c]/20 text-[#4a7a6c] text-xs uppercase tracking-wider font-medium mb-6">
             Referral Process
-          </motion.span>
-          <motion.h2 
-            variants={fadeInUp}
-            className="text-3xl sm:text-4xl md:text-5xl font-bold mb-4"
-          >
-            Simple. Professional. Predictable.
-          </motion.h2>
+          </span>
+          <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold mb-4">
+            Simple. Professional. <span className="gradient-text">Predictable.</span>
+          </h2>
         </motion.div>
 
-        <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-6">
+        {/* Desktop Timeline */}
+        <div className="hidden md:block relative">
+          {/* Timeline line */}
+          <div className="absolute top-24 left-0 right-0 h-0.5 bg-gradient-to-r from-transparent via-[#4a7a6c]/50 to-transparent" />
+          
+          <div className="grid grid-cols-4 gap-6">
+            {steps.map((step, index) => (
+              <motion.div
+                key={step.number}
+                initial={{ opacity: 0, y: 40 }}
+                animate={isInView ? { opacity: 1, y: 0 } : {}}
+                transition={{ delay: 0.2 + index * 0.15 }}
+                className="relative text-center"
+              >
+                {/* Circle on timeline */}
+                <motion.div 
+                  className="w-12 h-12 rounded-full bg-gradient-to-br from-[#01503c] to-[#4a7a6c] flex items-center justify-center mx-auto mb-8 relative z-10 shadow-lg shadow-[#01503c]/30"
+                  whileHover={{ scale: 1.1 }}
+                >
+                  <step.icon className="w-5 h-5 text-white" />
+                </motion.div>
+
+                <div className="feature-card rounded-2xl p-6 border border-[#4a7a6c]/20">
+                  <span className="text-4xl font-bold text-[#4a7a6c]/30">{step.number}</span>
+                  <h3 className="text-xl font-semibold mt-2 mb-2">{step.title}</h3>
+                  <p className="text-zinc-400 text-sm">{step.description}</p>
+                </div>
+              </motion.div>
+            ))}
+          </div>
+        </div>
+
+        {/* Mobile Timeline */}
+        <div className="md:hidden space-y-6">
           {steps.map((step, index) => (
             <motion.div
               key={step.number}
-              initial={{ opacity: 0, y: 30 }}
-              animate={isInView ? { opacity: 1, y: 0 } : {}}
-              transition={{ delay: 0.2 + index * 0.15 }}
-              className="relative"
+              initial={{ opacity: 0, x: -30 }}
+              animate={isInView ? { opacity: 1, x: 0 } : {}}
+              transition={{ delay: 0.2 + index * 0.1 }}
+              className="flex gap-4"
             >
-              <div className="feature-card rounded-2xl p-6 text-center h-full">
-                <div className="w-16 h-16 rounded-full bg-gradient-to-br from-[#01503c] to-[#4a7a6c] flex items-center justify-center text-2xl font-bold text-white mx-auto mb-4">
-                  {step.number}
+              <div className="flex flex-col items-center">
+                <div className="w-12 h-12 rounded-full bg-gradient-to-br from-[#01503c] to-[#4a7a6c] flex items-center justify-center shrink-0">
+                  <step.icon className="w-5 h-5 text-white" />
                 </div>
-                <h3 className="text-xl font-semibold mb-2">{step.title}</h3>
+                {index < steps.length - 1 && (
+                  <div className="w-0.5 h-full bg-[#4a7a6c]/30 my-2" />
+                )}
+              </div>
+              <div className="feature-card rounded-xl p-5 border border-[#4a7a6c]/20 flex-1">
+                <span className="text-2xl font-bold text-[#4a7a6c]/30">{step.number}</span>
+                <h3 className="text-lg font-semibold mt-1 mb-1">{step.title}</h3>
                 <p className="text-zinc-400 text-sm">{step.description}</p>
               </div>
-              {index < steps.length - 1 && (
-                <div className="hidden lg:block absolute top-1/2 -right-3 transform -translate-y-1/2">
-                  <ArrowRight className="w-6 h-6 text-[#4a7a6c]/50" />
-                </div>
-              )}
             </motion.div>
           ))}
         </div>
@@ -645,70 +665,63 @@ function ProcessSection() {
   );
 }
 
-// CTA Section
+// CTA Section - Centered minimal
 function CTASection() {
   const ref = useRef(null);
   const isInView = useInView(ref, { once: true, margin: "-100px" });
 
   return (
-    <section ref={ref} className="py-24 relative overflow-hidden">
-      <div className="max-w-4xl mx-auto px-6">
-        <motion.div
-          initial={{ opacity: 0, y: 50, scale: 0.95 }}
-          animate={isInView ? { opacity: 1, y: 0, scale: 1 } : {}}
-          transition={{ duration: 0.7, type: "spring" }}
-          className="text-center"
-        >
-          <div className="feature-card rounded-3xl p-12 md:p-16 relative overflow-hidden gradient-border">
-            <div className="absolute inset-0 bg-gradient-to-br from-[#01503c]/20 via-transparent to-[#4a7a6c]/10" />
-            <div className="absolute top-0 right-0 w-80 h-80 bg-[#4a7a6c]/10 rounded-full blur-[100px] pointer-events-none" />
+    <section ref={ref} className="py-32 relative overflow-hidden">
+      <div className="absolute inset-0">
+        <div className="absolute top-0 left-1/4 w-96 h-96 bg-[#01503c]/20 rounded-full blur-[150px] pointer-events-none" />
+        <div className="absolute bottom-0 right-1/4 w-96 h-96 bg-[#4a7a6c]/15 rounded-full blur-[150px] pointer-events-none" />
+      </div>
 
-            <div className="relative">
-              <motion.h2 
-                className="text-3xl sm:text-4xl md:text-5xl font-bold mb-6"
-                initial={{ opacity: 0, y: 20 }}
-                animate={isInView ? { opacity: 1, y: 0 } : {}}
-                transition={{ delay: 0.2 }}
-              >
-                Let&apos;s Build Together
-              </motion.h2>
-              <motion.p 
-                className="text-zinc-400 text-lg mb-10 max-w-2xl mx-auto"
-                initial={{ opacity: 0, y: 20 }}
-                animate={isInView ? { opacity: 1, y: 0 } : {}}
-                transition={{ delay: 0.3 }}
-              >
-                If you&apos;re a professional who values strong communication, clean execution, 
-                and long-term relationships — we should connect.
-              </motion.p>
-              <motion.div 
-                className="flex flex-col sm:flex-row items-center justify-center gap-4"
-                initial={{ opacity: 0, y: 20 }}
-                animate={isInView ? { opacity: 1, y: 0 } : {}}
-                transition={{ delay: 0.4 }}
-              >
-                <motion.a
-                  href="mailto:chris@chrislending.com"
-                  className="inline-flex items-center gap-2 btn-primary px-8 py-4 rounded-xl text-lg font-medium"
-                  whileHover={{ scale: 1.05 }}
-                  whileTap={{ scale: 0.95 }}
-                >
-                  Become a Strategic Partner
-                  <ArrowRight size={20} />
-                </motion.a>
-                <motion.a
-                  href="https://calendly.com/chriscrockermortgage/mwm"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="inline-flex items-center gap-2 btn-secondary px-8 py-4 rounded-xl text-lg font-medium"
-                  whileHover={{ scale: 1.05 }}
-                  whileTap={{ scale: 0.95 }}
-                >
-                  <Phone size={20} />
-                  Schedule a Partner Call
-                </motion.a>
-              </motion.div>
-            </div>
+      <div className="max-w-4xl mx-auto px-6 relative text-center">
+        <motion.div
+          initial={{ opacity: 0, y: 40 }}
+          animate={isInView ? { opacity: 1, y: 0 } : {}}
+          transition={{ duration: 0.7 }}
+        >
+          <motion.div
+            initial={{ scale: 0 }}
+            animate={isInView ? { scale: 1 } : {}}
+            transition={{ delay: 0.2, type: "spring" }}
+            className="w-20 h-20 rounded-2xl bg-gradient-to-br from-[#01503c] to-[#4a7a6c] flex items-center justify-center mx-auto mb-8"
+          >
+            <Handshake className="w-10 h-10 text-white" />
+          </motion.div>
+
+          <h2 className="text-4xl sm:text-5xl md:text-6xl font-bold mb-6">
+            Let&apos;s Build <span className="gradient-text">Together</span>
+          </h2>
+          
+          <p className="text-xl text-zinc-400 mb-10 max-w-2xl mx-auto">
+            If you&apos;re a professional who values strong communication, clean execution, 
+            and long-term relationships — we should connect.
+          </p>
+
+          <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
+            <motion.a
+              href="mailto:chris@chrislending.com"
+              className="inline-flex items-center gap-2 btn-primary px-8 py-4 rounded-xl text-lg font-medium"
+              whileHover={{ scale: 1.05 }}
+              whileTap={{ scale: 0.95 }}
+            >
+              Become a Strategic Partner
+              <ArrowRight size={20} />
+            </motion.a>
+            <motion.a
+              href="https://calendly.com/chriscrockermortgage/mwm"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-flex items-center gap-2 btn-secondary px-8 py-4 rounded-xl text-lg font-medium"
+              whileHover={{ scale: 1.05 }}
+              whileTap={{ scale: 0.95 }}
+            >
+              <Phone size={20} />
+              Schedule a Call
+            </motion.a>
           </div>
         </motion.div>
       </div>
@@ -719,73 +732,30 @@ function CTASection() {
 // Footer
 function Footer() {
   return (
-    <footer className="py-16 border-t border-[#4a7a6c]/20 relative overflow-hidden">
-      <div className="absolute bottom-0 left-0 right-0 h-32 bg-gradient-to-t from-[#01503c]/5 to-transparent pointer-events-none" />
-
-      <div className="max-w-7xl mx-auto px-6 relative">
-        <div className="grid md:grid-cols-2 gap-12 mb-12">
-          <motion.div
-            initial={{ opacity: 0, x: -20 }}
-            whileInView={{ opacity: 1, x: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.5 }}
-          >
-            <div className="mb-4">
-              <div className="flex items-center gap-2 mb-1">
-                <span className="font-semibold text-xl">Chris </span>
-                <span className="text-[#4a7a6c] font-semibold text-xl">Crocker</span>
-                <span className="text-zinc-500 mx-1">|</span>
-                <a 
-                  href="tel:+19802324269" 
-                  className="text-zinc-400 hover:text-[#4a7a6c] transition-colors"
-                >
+    <footer className="py-12 border-t border-zinc-800 relative">
+      <div className="max-w-7xl mx-auto px-6">
+        <div className="flex flex-col md:flex-row items-center justify-between gap-6">
+          <div className="flex items-center gap-4">
+            <div>
+              <div className="flex items-center gap-1">
+                <span className="font-semibold">Chris </span>
+                <span className="text-[#4a7a6c] font-semibold">Crocker</span>
+                <span className="text-zinc-600 mx-1">|</span>
+                <a href="tel:+19802324269" className="text-zinc-400 hover:text-[#4a7a6c] transition-colors text-sm">
                   (980) 232-4269
                 </a>
               </div>
-              <div className="text-sm text-zinc-500">Mortgage Advisor</div>
+              <div className="text-xs text-zinc-500">Mortgage Advisor</div>
             </div>
+          </div>
 
-            <p className="text-zinc-400 text-sm mb-2">
-              NMLS 2264202 | Real Consultants Mortgage
-            </p>
-            <p className="text-zinc-500 text-sm">Equal Housing Lender</p>
-          </motion.div>
-
-          <motion.div
-            className="md:text-right"
-            initial={{ opacity: 0, x: 20 }}
-            whileInView={{ opacity: 1, x: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.5, delay: 0.1 }}
-          >
-            <p className="text-zinc-400 mb-4">
-              Strategic partnerships built on clarity, execution, and trust.
-            </p>
-            <div className="flex gap-4 md:justify-end">
-              <Link href="/" className="text-zinc-500 hover:text-[#4a7a6c] text-sm transition-colors">
-                Home
-              </Link>
-              <Link href="/partners" className="text-zinc-500 hover:text-[#4a7a6c] text-sm transition-colors">
-                Partners
-              </Link>
-            </div>
-          </motion.div>
-        </div>
-
-        <motion.div
-          className="flex flex-col md:flex-row items-center justify-between gap-4 pt-8 border-t border-zinc-800"
-          initial={{ opacity: 0 }}
-          whileInView={{ opacity: 1 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.5, delay: 0.2 }}
-        >
-          <p className="text-zinc-500 text-sm">
-            © 2026 Real Consultants Mortgage
-          </p>
           <div className="flex items-center gap-6">
-            <a href="#" className="text-zinc-500 hover:text-[#4a7a6c] text-sm transition-colors">
-              Privacy Policy
-            </a>
+            <Link href="/" className="text-zinc-500 hover:text-[#4a7a6c] text-sm transition-colors">
+              Home
+            </Link>
+            <Link href="/partners" className="text-zinc-500 hover:text-[#4a7a6c] text-sm transition-colors">
+              Partners
+            </Link>
             <a
               href="https://www.nmlsconsumeraccess.org/"
               target="_blank"
@@ -795,7 +765,16 @@ function Footer() {
               NMLS Consumer Access
             </a>
           </div>
-        </motion.div>
+        </div>
+
+        <div className="mt-8 pt-6 border-t border-zinc-800 text-center">
+          <p className="text-zinc-600 text-sm">
+            NMLS 2264202 | Real Consultants Mortgage | Equal Housing Lender
+          </p>
+          <p className="text-zinc-600 text-xs mt-2">
+            © 2026 Real Consultants Mortgage
+          </p>
+        </div>
       </div>
     </footer>
   );
@@ -808,12 +787,9 @@ export default function PartnersPage() {
       <Header />
       <HeroSection />
       <div className="section-divider" />
-      <PhilosophySection />
-      <div className="section-divider" />
       <PartnersSection />
       <div className="section-divider" />
       <WhyChooseUsSection />
-      <div className="section-divider" />
       <ProcessSection />
       <CTASection />
       <Footer />

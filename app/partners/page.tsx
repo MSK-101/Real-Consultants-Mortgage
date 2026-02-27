@@ -121,6 +121,18 @@ function Header() {
           >
             Partners
           </Link>
+          <a
+            href="#who-we-partner"
+            className="text-zinc-400 hover:text-white transition-colors text-sm px-3 py-2"
+          >
+            Who We Work With
+          </a>
+          <a
+            href="#process"
+            className="text-zinc-400 hover:text-white transition-colors text-sm px-3 py-2"
+          >
+            Process
+          </a>
           <motion.a
             href="https://calendly.com/chriscrockermortgage/mwm"
             target="_blank"
@@ -168,6 +180,20 @@ function Header() {
               >
                 Partners
               </Link>
+              <a
+                href="#who-we-partner"
+                className="text-zinc-400 hover:text-white py-2"
+                onClick={() => setMobileMenuOpen(false)}
+              >
+                Who We Work With
+              </a>
+              <a
+                href="#process"
+                className="text-zinc-400 hover:text-white py-2"
+                onClick={() => setMobileMenuOpen(false)}
+              >
+                Process
+              </a>
               <a
                 href="https://calendly.com/chriscrockermortgage/mwm"
                 target="_blank"
@@ -413,7 +439,7 @@ function PartnersSection() {
   ];
 
   return (
-    <section ref={ref} id="partners" className="py-24 relative overflow-hidden">
+    <section ref={ref} id="who-we-partner" className="py-24 relative overflow-hidden">
       <div className="absolute inset-0 grid-pattern opacity-20" />
       
       <div className="max-w-7xl mx-auto px-6 relative">
@@ -568,7 +594,7 @@ function ProcessSection() {
   ];
 
   return (
-    <section ref={ref} className="py-24 relative overflow-hidden">
+    <section ref={ref} id="process" className="py-24 relative overflow-hidden">
       <div className="max-w-7xl mx-auto px-6">
         <motion.div
           initial="hidden"

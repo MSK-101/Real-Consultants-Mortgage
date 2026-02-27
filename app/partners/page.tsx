@@ -602,36 +602,34 @@ function ProcessSection() {
           </h2>
         </motion.div>
 
-        {/* Desktop Timeline */}
-        <div className="hidden md:block relative">
-          {/* Timeline line */}
-          <div className="absolute top-24 left-0 right-0 h-0.5 bg-gradient-to-r from-transparent via-[#4a7a6c]/50 to-transparent" />
-          
-          <div className="grid grid-cols-4 gap-6">
-            {steps.map((step, index) => (
-              <motion.div
-                key={step.number}
-                initial={{ opacity: 0, y: 40 }}
-                animate={isInView ? { opacity: 1, y: 0 } : {}}
-                transition={{ delay: 0.2 + index * 0.15 }}
-                className="relative text-center"
-              >
-                {/* Circle on timeline */}
-                <motion.div 
-                  className="w-12 h-12 rounded-full bg-gradient-to-br from-[#01503c] to-[#4a7a6c] flex items-center justify-center mx-auto mb-8 relative z-10 shadow-lg shadow-[#01503c]/30"
-                  whileHover={{ scale: 1.1 }}
-                >
-                  <step.icon className="w-5 h-5 text-white" />
-                </motion.div>
-
-                <div className="feature-card rounded-2xl p-6 border border-[#4a7a6c]/20">
-                  <span className="text-4xl font-bold text-[#4a7a6c]/30">{step.number}</span>
-                  <h3 className="text-xl font-semibold mt-2 mb-2">{step.title}</h3>
-                  <p className="text-zinc-400 text-sm">{step.description}</p>
+        {/* Desktop Steps */}
+        <div className="hidden md:grid grid-cols-4 gap-4">
+          {steps.map((step, index) => (
+            <motion.div
+              key={step.number}
+              initial={{ opacity: 0, y: 40 }}
+              animate={isInView ? { opacity: 1, y: 0 } : {}}
+              transition={{ delay: 0.2 + index * 0.15 }}
+              whileHover={{ y: -8 }}
+              className="relative group"
+            >
+              <div className="feature-card rounded-2xl p-6 border border-[#4a7a6c]/20 h-full text-center transition-all duration-300 group-hover:border-[#4a7a6c]/50 group-hover:shadow-lg group-hover:shadow-[#01503c]/10">
+                <div className="w-14 h-14 rounded-xl bg-gradient-to-br from-[#01503c] to-[#4a7a6c] flex items-center justify-center mx-auto mb-4 transition-transform duration-300 group-hover:scale-110">
+                  <step.icon className="w-6 h-6 text-white" />
                 </div>
-              </motion.div>
-            ))}
-          </div>
+                <span className="text-5xl font-bold text-[#4a7a6c]/20">{step.number}</span>
+                <h3 className="text-xl font-semibold mt-2 mb-2">{step.title}</h3>
+                <p className="text-zinc-400 text-sm">{step.description}</p>
+              </div>
+              
+              {/* Arrow between cards */}
+              {index < steps.length - 1 && (
+                <div className="absolute top-1/2 -right-4 transform -translate-y-1/2 z-10 hidden lg:block">
+                  <ChevronRight className="w-6 h-6 text-[#4a7a6c]/40" />
+                </div>
+              )}
+            </motion.div>
+          ))}
         </div>
 
         {/* Mobile Timeline */}

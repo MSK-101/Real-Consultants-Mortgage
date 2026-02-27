@@ -317,17 +317,16 @@ function HeroSection() {
   );
 }
 
-// Partners Section - Tabbed interface
+// Partners Section - Accordion style
 function PartnersSection() {
   const ref = useRef(null);
   const isInView = useInView(ref, { once: true, margin: "-100px" });
-  const [activeTab, setActiveTab] = useState(0);
+  const [expandedIndex, setExpandedIndex] = useState<number | null>(0);
 
   const partners = [
     {
       title: "Real Estate Agents",
       icon: HomeIcon,
-      color: "from-emerald-500 to-teal-600",
       benefits: [
         "Pre-approve buyers properly (not pre-qualify loosely)",
         "Structure offers strategically",
@@ -339,7 +338,6 @@ function PartnersSection() {
     {
       title: "Contractors & Renovation",
       icon: Hammer,
-      color: "from-amber-500 to-orange-600",
       benefits: [
         "Renovation financing",
         "Construction-to-permanent loans",
@@ -351,7 +349,6 @@ function PartnersSection() {
     {
       title: "Construction Companies",
       icon: Building2,
-      color: "from-blue-500 to-indigo-600",
       benefits: [
         "Ground-up construction financing",
         "Spec build funding",
@@ -363,7 +360,6 @@ function PartnersSection() {
     {
       title: "Attorneys",
       icon: Scale,
-      color: "from-purple-500 to-violet-600",
       benefits: [
         "Probate property sales",
         "Trust transfers",
@@ -375,7 +371,6 @@ function PartnersSection() {
     {
       title: "CPAs & Financial Advisors",
       icon: Calculator,
-      color: "from-rose-500 to-pink-600",
       benefits: [
         "Strategic refinancing analysis",
         "Equity leverage planning",
@@ -386,14 +381,11 @@ function PartnersSection() {
     },
   ];
 
-  const currentPartner = partners[activeTab];
-  const IconComponent = currentPartner.icon;
-
   return (
     <section ref={ref} id="who-we-partner" className="py-24 relative overflow-hidden">
-      <div className="absolute inset-0 grid-pattern opacity-10" />
+      <div className="absolute top-0 right-0 w-[500px] h-[500px] bg-[#01503c]/10 rounded-full blur-[150px] pointer-events-none" />
       
-      <div className="max-w-7xl mx-auto px-6 relative">
+      <div className="max-w-5xl mx-auto px-6 relative">
         <motion.div
           initial={{ opacity: 0, y: 30 }}
           animate={isInView ? { opacity: 1, y: 0 } : {}}
@@ -402,90 +394,92 @@ function PartnersSection() {
           <span className="inline-block px-4 py-1.5 rounded-full bg-[#01503c]/20 text-[#4a7a6c] text-xs uppercase tracking-wider font-medium mb-6">
             Who We Partner With
           </span>
-          <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold">
+          <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold mb-4">
             Built for Professionals Who{" "}
             <span className="gradient-text">Expect Excellence</span>
           </h2>
+          <p className="text-zinc-400 text-lg max-w-2xl mx-auto">
+            Click to explore how we support different industries
+          </p>
         </motion.div>
 
-        <div className="grid lg:grid-cols-12 gap-8">
-          {/* Tab buttons */}
-          <motion.div
-            initial={{ opacity: 0, x: -30 }}
-            animate={isInView ? { opacity: 1, x: 0 } : {}}
-            transition={{ delay: 0.2 }}
-            className="lg:col-span-4 space-y-2"
-          >
-            {partners.map((partner, index) => (
-              <motion.button
-                key={partner.title}
-                onClick={() => setActiveTab(index)}
-                className={`w-full text-left px-5 py-4 rounded-xl transition-all duration-300 flex items-center gap-4 ${
-                  activeTab === index
-                    ? "bg-[#01503c]/30 border border-[#4a7a6c]/40"
-                    : "hover:bg-zinc-800/50 border border-transparent"
-                }`}
-                whileHover={{ x: activeTab === index ? 0 : 5 }}
-              >
-                <div className={`w-10 h-10 rounded-lg bg-gradient-to-br ${partner.color} flex items-center justify-center shrink-0`}>
-                  <partner.icon className="w-5 h-5 text-white" />
-                </div>
-                <span className={`font-medium ${activeTab === index ? "text-white" : "text-zinc-400"}`}>
-                  {partner.title}
-                </span>
-                {activeTab === index && (
-                  <ChevronRight className="w-5 h-5 text-[#4a7a6c] ml-auto" />
-                )}
-              </motion.button>
-            ))}
-          </motion.div>
-
-          {/* Content area */}
-          <motion.div
-            initial={{ opacity: 0, x: 30 }}
-            animate={isInView ? { opacity: 1, x: 0 } : {}}
-            transition={{ delay: 0.3 }}
-            className="lg:col-span-8"
-          >
-            <AnimatePresence mode="wait">
+        <div className="space-y-4">
+          {partners.map((partner, index) => {
+            const isExpanded = expandedIndex === index;
+            const IconComponent = partner.icon;
+            
+            return (
               <motion.div
-                key={activeTab}
+                key={partner.title}
                 initial={{ opacity: 0, y: 20 }}
-                animate={{ opacity: 1, y: 0 }}
-                exit={{ opacity: 0, y: -20 }}
-                transition={{ duration: 0.3 }}
-                className="feature-card rounded-2xl p-8 md:p-10 border border-[#4a7a6c]/20 h-full"
+                animate={isInView ? { opacity: 1, y: 0 } : {}}
+                transition={{ delay: 0.1 + index * 0.1 }}
+                className="overflow-hidden"
               >
-                <div className="flex items-center gap-4 mb-6">
-                  <div className={`w-16 h-16 rounded-2xl bg-gradient-to-br ${currentPartner.color} flex items-center justify-center`}>
-                    <IconComponent className="w-8 h-8 text-white" />
+                <motion.button
+                  onClick={() => setExpandedIndex(isExpanded ? null : index)}
+                  className={`w-full text-left px-6 py-5 rounded-2xl transition-all duration-300 flex items-center gap-4 ${
+                    isExpanded
+                      ? "bg-[#01503c]/20 border-2 border-[#4a7a6c]/40 rounded-b-none"
+                      : "feature-card border border-[#4a7a6c]/20 hover:border-[#4a7a6c]/40"
+                  }`}
+                  whileHover={{ scale: isExpanded ? 1 : 1.01 }}
+                >
+                  <div className="w-12 h-12 rounded-xl bg-gradient-to-br from-[#01503c] to-[#4a7a6c] flex items-center justify-center shrink-0">
+                    <IconComponent className="w-6 h-6 text-white" />
                   </div>
-                  <h3 className="text-2xl md:text-3xl font-bold">{currentPartner.title}</h3>
-                </div>
+                  <div className="flex-1">
+                    <h3 className="text-xl font-semibold">{partner.title}</h3>
+                    {!isExpanded && (
+                      <p className="text-zinc-500 text-sm mt-1 hidden sm:block">{partner.tagline}</p>
+                    )}
+                  </div>
+                  <motion.div
+                    animate={{ rotate: isExpanded ? 90 : 0 }}
+                    transition={{ duration: 0.2 }}
+                    className="shrink-0"
+                  >
+                    <ChevronRight className={`w-6 h-6 ${isExpanded ? "text-[#4a7a6c]" : "text-zinc-500"}`} />
+                  </motion.div>
+                </motion.button>
 
-                <div className="grid sm:grid-cols-2 gap-4 mb-8">
-                  {currentPartner.benefits.map((benefit, i) => (
+                <AnimatePresence>
+                  {isExpanded && (
                     <motion.div
-                      key={i}
-                      initial={{ opacity: 0, x: -10 }}
-                      animate={{ opacity: 1, x: 0 }}
-                      transition={{ delay: i * 0.1 }}
-                      className="flex items-start gap-3 bg-zinc-800/30 rounded-lg p-4"
+                      initial={{ height: 0, opacity: 0 }}
+                      animate={{ height: "auto", opacity: 1 }}
+                      exit={{ height: 0, opacity: 0 }}
+                      transition={{ duration: 0.3 }}
+                      className="overflow-hidden"
                     >
-                      <CheckCircle2 className="w-5 h-5 text-[#4a7a6c] shrink-0 mt-0.5" />
-                      <span className="text-zinc-300">{benefit}</span>
+                      <div className="px-6 py-6 bg-zinc-900/50 border-2 border-t-0 border-[#4a7a6c]/40 rounded-b-2xl">
+                        <div className="grid sm:grid-cols-2 gap-3 mb-6">
+                          {partner.benefits.map((benefit, i) => (
+                            <motion.div
+                              key={i}
+                              initial={{ opacity: 0, x: -10 }}
+                              animate={{ opacity: 1, x: 0 }}
+                              transition={{ delay: i * 0.05 }}
+                              className="flex items-start gap-3 bg-zinc-800/50 rounded-xl p-4"
+                            >
+                              <CheckCircle2 className="w-5 h-5 text-[#4a7a6c] shrink-0 mt-0.5" />
+                              <span className="text-zinc-300 text-sm">{benefit}</span>
+                            </motion.div>
+                          ))}
+                        </div>
+                        <div className="flex items-center gap-3 pt-4 border-t border-zinc-800">
+                          <div className="w-1 h-8 bg-gradient-to-b from-[#01503c] to-[#4a7a6c] rounded-full" />
+                          <p className="text-[#4a7a6c] italic">
+                            &ldquo;{partner.tagline}&rdquo;
+                          </p>
+                        </div>
+                      </div>
                     </motion.div>
-                  ))}
-                </div>
-
-                <div className="border-t border-zinc-800 pt-6">
-                  <p className="text-lg text-[#4a7a6c] italic">
-                    &ldquo;{currentPartner.tagline}&rdquo;
-                  </p>
-                </div>
+                  )}
+                </AnimatePresence>
               </motion.div>
-            </AnimatePresence>
-          </motion.div>
+            );
+          })}
         </div>
       </div>
     </section>

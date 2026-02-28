@@ -531,7 +531,7 @@ function WhyChooseUsSection() {
               Why Work With Us
             </span>
             <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold mb-6 leading-tight">
-              We&apos;re not here to cross-sell your book of business.
+              We focus on supporting your work, not selling around you.
             </h2>
             <div className="relative">
               <div className="absolute -left-4 top-0 bottom-0 w-1 bg-gradient-to-b from-[#01503c] to-[#4a7a6c] rounded-full" />

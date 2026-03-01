@@ -775,7 +775,7 @@ function RoadmapSection() {
                   style={{ border: "none" }}
                   scrolling="no"
                   width="100%"
-                  height="450"
+                  height="200"
                   title="Buyer Pre-Qualification"
                 />
               </motion.div>
@@ -794,14 +794,14 @@ function RoadmapSection() {
                 initial={{ opacity: 0, x: -50 }}
                 animate={isInView ? { opacity: 1, x: 0 } : {}}
                 transition={{ delay: 0.6 }}
-                className="rounded-2xl overflow-hidden border border-zinc-800 bg-zinc-900/50 order-2 lg:order-1"
+                className="rounded-2xl overflow-hidden border border-zinc-800 bg-white order-2 lg:order-1"
               >
                 <iframe
                   src="https://homequityreport.com/widget?user=chriscrocker&hex=01503c"
                   style={{ border: "none" }}
                   scrolling="no"
                   width="100%"
-                  height="450"
+                  height="200"
                   title="Home Equity Report"
                 />
               </motion.div>

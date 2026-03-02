@@ -52,16 +52,18 @@ function Header() {
           <Link href="/" className="flex flex-col">
             <div className="flex items-center">
               <span className="font-semibold text-lg sm:text-xl">Chris </span>
-              <span className="text-[#4a7a6c] font-semibold text-lg sm:text-xl">Crocker</span>
+              <span className="text-[#4a7a6c] font-semibold text-lg sm:text-xl">
+                Crocker
+              </span>
             </div>
             <div className="text-xs text-zinc-500">Mortgage Advisor</div>
           </Link>
           <span className="text-zinc-600 hidden sm:inline">|</span>
           <a
-            href="tel:+19802324269"
+            href="tel:+15625234356"
             className="text-zinc-400 hover:text-[#4a7a6c] transition-colors text-sm sm:text-base hidden sm:inline"
           >
-            (980) 232-4269
+            (562) 523-4356
           </a>
         </div>
 
@@ -73,10 +75,7 @@ function Header() {
           >
             Home
           </Link>
-          <Link
-            href="/partners"
-            className="text-[#4a7a6c] text-sm px-3 py-2"
-          >
+          <Link href="/partners" className="text-[#4a7a6c] text-sm px-3 py-2">
             Partners
           </Link>
           <a
@@ -219,8 +218,8 @@ function HeroSection() {
               transition={{ delay: 0.4 }}
               className="text-lg text-zinc-400 mb-10 max-w-lg"
             >
-              We work alongside top-tier real estate and financial professionals 
-              to deliver seamless transactions, protect client relationships, 
+              We work alongside top-tier real estate and financial professionals
+              to deliver seamless transactions, protect client relationships,
               and create long-term value for everyone involved.
             </motion.p>
 
@@ -269,8 +268,13 @@ function HeroSection() {
                   <Shield className="w-6 h-6 text-white" />
                 </div>
                 <div>
-                  <h3 className="text-lg font-semibold mb-1">Reputation First</h3>
-                  <p className="text-zinc-400 text-sm">When you refer a client, you&apos;re putting your name on the line. We treat that seriously.</p>
+                  <h3 className="text-lg font-semibold mb-1">
+                    Reputation First
+                  </h3>
+                  <p className="text-zinc-400 text-sm">
+                    When you refer a client, you&apos;re putting your name on
+                    the line. We treat that seriously.
+                  </p>
                 </div>
               </div>
             </motion.div>
@@ -333,7 +337,8 @@ function PartnersSection() {
         "Win competitive deals",
         "Close on time without drama",
       ],
-      tagline: "You focus on negotiating and finding the property. We handle the capital.",
+      tagline:
+        "You focus on negotiating and finding the property. We handle the capital.",
     },
     {
       title: "Contractors & Renovation",
@@ -344,7 +349,8 @@ function PartnersSection() {
         "Investor rehab financing",
         "Fix & flip capital",
       ],
-      tagline: "When your clients need funding to move forward, we provide the strategy to make it possible.",
+      tagline:
+        "When your clients need funding to move forward, we provide the strategy to make it possible.",
     },
     {
       title: "Construction Companies",
@@ -355,7 +361,8 @@ function PartnersSection() {
         "Investor capital structuring",
         "Bridge financing",
       ],
-      tagline: "We understand timelines, draws, and risk. We don't slow projects down — we accelerate them.",
+      tagline:
+        "We understand timelines, draws, and risk. We don't slow projects down — we accelerate them.",
     },
     {
       title: "Attorneys",
@@ -366,7 +373,8 @@ function PartnersSection() {
         "Divorce buyouts",
         "Strategic refinancing solutions",
       ],
-      tagline: "Our job is to simplify complex financial pieces so you can focus on legal execution.",
+      tagline:
+        "Our job is to simplify complex financial pieces so you can focus on legal execution.",
     },
     {
       title: "CPAs & Financial Advisors",
@@ -382,9 +390,13 @@ function PartnersSection() {
   ];
 
   return (
-    <section ref={ref} id="who-we-partner" className="py-24 relative overflow-hidden">
+    <section
+      ref={ref}
+      id="who-we-partner"
+      className="py-24 relative overflow-hidden"
+    >
       <div className="absolute top-0 right-0 w-[500px] h-[500px] bg-[#01503c]/10 rounded-full blur-[150px] pointer-events-none" />
-      
+
       <div className="max-w-5xl mx-auto px-6 relative">
         <motion.div
           initial={{ opacity: 0, y: 30 }}
@@ -407,7 +419,7 @@ function PartnersSection() {
           {partners.map((partner, index) => {
             const isExpanded = expandedIndex === index;
             const IconComponent = partner.icon;
-            
+
             return (
               <motion.div
                 key={partner.title}
@@ -431,7 +443,9 @@ function PartnersSection() {
                   <div className="flex-1">
                     <h3 className="text-xl font-semibold">{partner.title}</h3>
                     {!isExpanded && (
-                      <p className="text-zinc-500 text-sm mt-1 hidden sm:block">{partner.tagline}</p>
+                      <p className="text-zinc-500 text-sm mt-1 hidden sm:block">
+                        {partner.tagline}
+                      </p>
                     )}
                   </div>
                   <motion.div
@@ -439,7 +453,9 @@ function PartnersSection() {
                     transition={{ duration: 0.2 }}
                     className="shrink-0"
                   >
-                    <ChevronRight className={`w-6 h-6 ${isExpanded ? "text-[#4a7a6c]" : "text-zinc-500"}`} />
+                    <ChevronRight
+                      className={`w-6 h-6 ${isExpanded ? "text-[#4a7a6c]" : "text-zinc-500"}`}
+                    />
                   </motion.div>
                 </motion.button>
 
@@ -463,7 +479,9 @@ function PartnersSection() {
                               className="flex items-start gap-3 bg-zinc-800/50 rounded-xl p-4"
                             >
                               <CheckCircle2 className="w-5 h-5 text-[#4a7a6c] shrink-0 mt-0.5" />
-                              <span className="text-zinc-300 text-sm">{benefit}</span>
+                              <span className="text-zinc-300 text-sm">
+                                {benefit}
+                              </span>
                             </motion.div>
                           ))}
                         </div>
@@ -494,7 +512,7 @@ function WhyChooseUsSection() {
   const reasons = [
     "Transparent communication at every stage",
     "Fast response times",
-    "Creative structuring when others say \"no\"",
+    'Creative structuring when others say "no"',
     "In-house systems to track and update deals",
     "Respect for your client relationships",
   ];
@@ -557,36 +575,40 @@ function ProcessSection() {
   const isInView = useInView(ref, { once: true, margin: "-100px" });
 
   const steps = [
-    { 
-      number: "01", 
-      title: "Introduce Us", 
+    {
+      number: "01",
+      title: "Introduce Us",
       description: "Send an email or text introducing us to your client",
-      icon: Mail
+      icon: Mail,
     },
-    { 
-      number: "02", 
-      title: "Strategy Call", 
+    {
+      number: "02",
+      title: "Strategy Call",
       description: "We schedule a strategy call with your client",
-      icon: Phone
+      icon: Phone,
     },
-    { 
-      number: "03", 
-      title: "Stay Updated", 
+    {
+      number: "03",
+      title: "Stay Updated",
       description: "You're updated at every milestone",
-      icon: MessageSquare
+      icon: MessageSquare,
     },
-    { 
-      number: "04", 
-      title: "Clean Close", 
+    {
+      number: "04",
+      title: "Clean Close",
       description: "We close cleanly and follow up long term",
-      icon: CheckCircle2
+      icon: CheckCircle2,
     },
   ];
 
   return (
-    <section ref={ref} id="process" className="py-24 relative overflow-hidden bg-zinc-900/50">
+    <section
+      ref={ref}
+      id="process"
+      className="py-24 relative overflow-hidden bg-zinc-900/50"
+    >
       <div className="absolute inset-0 grid-pattern opacity-20" />
-      
+
       <div className="max-w-7xl mx-auto px-6 relative">
         <motion.div
           initial={{ opacity: 0, y: 30 }}
@@ -597,7 +619,8 @@ function ProcessSection() {
             Referral Process
           </span>
           <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold mb-4">
-            Simple. Professional. <span className="gradient-text">Predictable.</span>
+            Simple. Professional.{" "}
+            <span className="gradient-text">Predictable.</span>
           </h2>
         </motion.div>
 
@@ -616,11 +639,15 @@ function ProcessSection() {
                 <div className="w-14 h-14 rounded-xl bg-gradient-to-br from-[#01503c] to-[#4a7a6c] flex items-center justify-center mx-auto mb-4 transition-transform duration-300 group-hover:scale-110">
                   <step.icon className="w-6 h-6 text-white" />
                 </div>
-                <span className="text-5xl font-bold text-[#4a7a6c]/20">{step.number}</span>
-                <h3 className="text-xl font-semibold mt-2 mb-2">{step.title}</h3>
+                <span className="text-5xl font-bold text-[#4a7a6c]/20">
+                  {step.number}
+                </span>
+                <h3 className="text-xl font-semibold mt-2 mb-2">
+                  {step.title}
+                </h3>
                 <p className="text-zinc-400 text-sm">{step.description}</p>
               </div>
-              
+
               {/* Arrow between cards */}
               {index < steps.length - 1 && (
                 <div className="absolute top-1/2 -right-4 transform -translate-y-1/2 z-10 hidden lg:block">
@@ -650,8 +677,12 @@ function ProcessSection() {
                 )}
               </div>
               <div className="feature-card rounded-xl p-5 border border-[#4a7a6c]/20 flex-1">
-                <span className="text-2xl font-bold text-[#4a7a6c]/30">{step.number}</span>
-                <h3 className="text-lg font-semibold mt-1 mb-1">{step.title}</h3>
+                <span className="text-2xl font-bold text-[#4a7a6c]/30">
+                  {step.number}
+                </span>
+                <h3 className="text-lg font-semibold mt-1 mb-1">
+                  {step.title}
+                </h3>
                 <p className="text-zinc-400 text-sm">{step.description}</p>
               </div>
             </motion.div>
@@ -692,10 +723,10 @@ function CTASection() {
           <h2 className="text-4xl sm:text-5xl md:text-6xl font-bold mb-6">
             Let&apos;s Build <span className="gradient-text">Together</span>
           </h2>
-          
+
           <p className="text-xl text-zinc-400 mb-10 max-w-2xl mx-auto">
-            If you&apos;re a professional who values strong communication, clean execution, 
-            and long-term relationships — we should connect.
+            If you&apos;re a professional who values strong communication, clean
+            execution, and long-term relationships — we should connect.
           </p>
 
           <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
@@ -738,8 +769,11 @@ function Footer() {
                 <span className="font-semibold">Chris </span>
                 <span className="text-[#4a7a6c] font-semibold">Crocker</span>
                 <span className="text-zinc-600 mx-1">|</span>
-                <a href="tel:+19802324269" className="text-zinc-400 hover:text-[#4a7a6c] transition-colors text-sm">
-                  (980) 232-4269
+                <a
+                  href="tel:+15625234356"
+                  className="text-zinc-400 hover:text-[#4a7a6c] transition-colors text-sm"
+                >
+                  (562) 523-4356
                 </a>
               </div>
               <div className="text-xs text-zinc-500">Mortgage Advisor</div>
@@ -747,10 +781,16 @@ function Footer() {
           </div>
 
           <div className="flex items-center gap-6">
-            <Link href="/" className="text-zinc-500 hover:text-[#4a7a6c] text-sm transition-colors">
+            <Link
+              href="/"
+              className="text-zinc-500 hover:text-[#4a7a6c] text-sm transition-colors"
+            >
               Home
             </Link>
-            <Link href="/partners" className="text-zinc-500 hover:text-[#4a7a6c] text-sm transition-colors">
+            <Link
+              href="/partners"
+              className="text-zinc-500 hover:text-[#4a7a6c] text-sm transition-colors"
+            >
               Partners
             </Link>
             <a
@@ -766,7 +806,7 @@ function Footer() {
 
         <div className="mt-8 pt-6 border-t border-zinc-800 text-center">
           <p className="text-zinc-600 text-sm">
-            NMLS 2264202 | Company NMLS 240399 | Real Consultants Mortgage | Equal Housing Lender
+            NMLS 2264202 | Company NMLS 240399 | Equal Housing Lender
           </p>
           <p className="text-zinc-600 text-xs mt-2">
             © 2026 Real Consultants Mortgage

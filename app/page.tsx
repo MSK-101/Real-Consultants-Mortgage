@@ -175,10 +175,10 @@ function Header() {
           </motion.a>
           <span className="text-zinc-600 hidden sm:inline">|</span>
           <a
-            href="tel:+19802324269"
+            href="tel:+15625234356"
             className="text-zinc-400 hover:text-[#4a7a6c] transition-colors text-sm sm:text-base hidden sm:inline"
           >
-            (980) 232-4269
+            (562) 523-4356
           </a>
         </div>
 
@@ -1827,10 +1827,10 @@ function Footer() {
                 </span>
                 <span className="text-zinc-500 mx-1">|</span>
                 <a
-                  href="tel:+19802324269"
+                  href="tel:+15625234356"
                   className="text-zinc-400 hover:text-[#4a7a6c] transition-colors"
                 >
-                  (980) 232-4269
+                  (562) 523-4356
                 </a>
               </div>
               <div className="text-sm text-zinc-500">Mortgage Advisor</div>

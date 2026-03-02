@@ -1256,7 +1256,7 @@ function TrustSection() {
               animate={isInView ? { opacity: 1 } : {}}
               transition={{ delay: 0.6 }}
             >
-              NMLS 2264202
+              NMLS 2264202 | Company NMLS 240399
             </motion.p>
 
             <motion.div
@@ -1837,7 +1837,7 @@ function Footer() {
             </div>
 
             <p className="text-zinc-400 text-sm mb-2">
-              NMLS 2264202 | Real Consultants Mortgage
+              NMLS 2264202 | Company NMLS 240399 | Real Consultants Mortgage
             </p>
             <p className="text-zinc-500 text-sm">Equal Housing Lender</p>
           </motion.div>

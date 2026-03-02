@@ -766,7 +766,7 @@ function Footer() {
 
         <div className="mt-8 pt-6 border-t border-zinc-800 text-center">
           <p className="text-zinc-600 text-sm">
-            NMLS 2264202 | Real Consultants Mortgage | Equal Housing Lender
+            NMLS 2264202 | Company NMLS 240399 | Real Consultants Mortgage | Equal Housing Lender
           </p>
           <p className="text-zinc-600 text-xs mt-2">
             © 2026 Real Consultants Mortgage

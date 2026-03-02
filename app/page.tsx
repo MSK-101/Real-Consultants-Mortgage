@@ -1894,13 +1894,13 @@ export default function HomePage() {
       <Header />
       <HeroSection />
       <div className="section-divider" />
-      <WhyThisApproachSection />
-      <div className="section-divider" />
       <CompleteExperienceSection />
       <div className="section-divider" />
       <RoadmapSection />
       <div className="section-divider" />
       <LoanTypesSection />
+      <div className="section-divider" />
+      <WhyThisApproachSection />
       <div className="section-divider" />
       <TrustSection />
       <div className="section-divider" />

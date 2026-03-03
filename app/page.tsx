@@ -219,10 +219,20 @@ function Header() {
             Partners
           </Link>
           <motion.a
+            href="https://240399.my1003app.com/2264202/register"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="btn-secondary px-5 py-2.5 rounded-lg text-sm font-medium ml-2"
+            whileHover={{ scale: 1.05 }}
+            whileTap={{ scale: 0.95 }}
+          >
+            Start Here
+          </motion.a>
+          <motion.a
             href="https://calendly.com/chriscrockermortgage/mwm"
             target="_blank"
             rel="noopener noreferrer"
-            className="btn-primary px-5 py-2.5 rounded-lg text-sm font-medium ml-2"
+            className="btn-primary px-5 py-2.5 rounded-lg text-sm font-medium"
             whileHover={{ scale: 1.05 }}
             whileTap={{ scale: 0.95 }}
           >
@@ -287,10 +297,18 @@ function Header() {
                 Partners
               </Link>
               <a
+                href="https://240399.my1003app.com/2264202/register"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="btn-secondary px-5 py-2.5 rounded-lg text-sm font-medium text-center mt-2"
+              >
+                Start Here
+              </a>
+              <a
                 href="https://calendly.com/chriscrockermortgage/mwm"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="btn-primary px-5 py-2.5 rounded-lg text-sm font-medium text-center mt-2"
+                className="btn-primary px-5 py-2.5 rounded-lg text-sm font-medium text-center"
               >
                 Book a Call
               </a>

@@ -720,7 +720,7 @@ function RoadmapSection() {
             animate={isInView ? { opacity: 1, y: 0 } : {}}
             transition={{ duration: 0.6, delay: 0.2 }}
           >
-            <div className="grid lg:grid-cols-2 gap-8 lg:gap-12 items-start">
+            <div className="grid lg:grid-cols-2 gap-8 lg:gap-12 items-center">
               <div className="feature-card rounded-2xl p-8 border border-[#4a7a6c]/20">
                 <div className="flex items-center gap-3 mb-6">
                   <div className="w-14 h-14 rounded-xl bg-gradient-to-br from-[#01503c] to-[#4a7a6c] flex items-center justify-center">
@@ -788,7 +788,7 @@ function RoadmapSection() {
             animate={isInView ? { opacity: 1, y: 0 } : {}}
             transition={{ duration: 0.6, delay: 0.4 }}
           >
-            <div className="grid lg:grid-cols-2 gap-8 lg:gap-12 items-start">
+            <div className="grid lg:grid-cols-2 gap-8 lg:gap-12 items-center">
               {/* Home Equity Embed - First on desktop for alternating layout */}
               <motion.div
                 initial={{ opacity: 0, x: -50 }}

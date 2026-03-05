@@ -1749,7 +1749,7 @@ function EmbedsSection() {
                 <p className="text-zinc-500 text-sm">For Current Homeowners</p>
               </div>
             </div>
-            <div className="rounded-xl overflow-hidden">
+            <div className="rounded-xl overflow-hidden bg-white">
               <iframe
                 src="https://homequityreport.com/widget?user=chriscrocker&hex=01503c"
                 style={{ border: "none" }}

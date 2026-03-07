@@ -14,12 +14,6 @@ export const metadata: Metadata = {
     "Get a clear mortgage plan, honest guidance, and a process that actually makes sense. Talk with a real expert, make confident decisions, and close with clarity.",
   keywords: ["mortgage", "home loan", "refinance", "mortgage advisor", "Chris Crocker", "home buying", "real estate financing"],
   authors: [{ name: "Chris Crocker" }],
-  icons: {
-    icon: [
-      { url: "/favicon.webp", type: "image/webp" },
-    ],
-    apple: "/og-image.webp",
-  },
   openGraph: {
     title: "Chris Crocker | Mortgage Advisor",
     description:

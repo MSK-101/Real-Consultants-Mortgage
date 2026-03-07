@@ -9,12 +9,36 @@ const inter = Inter({
 });
 
 export const metadata: Metadata = {
-  title: "Real Consultants Mortgage | Chris Crocker - Buy Smarter Without Confusion",
-  description: "Get a clear mortgage plan, honest guidance, and a process that actually makes sense. Talk with a real expert, make confident decisions, and close with clarity.",
+  title: "Chris Crocker | Mortgage Advisor",
+  description:
+    "Get a clear mortgage plan, honest guidance, and a process that actually makes sense. Talk with a real expert, make confident decisions, and close with clarity.",
+  keywords: ["mortgage", "home loan", "refinance", "mortgage advisor", "Chris Crocker", "home buying", "real estate financing"],
+  authors: [{ name: "Chris Crocker" }],
+  icons: {
+    icon: [
+      { url: "/favicon.webp", type: "image/webp" },
+    ],
+    apple: "/og-image.webp",
+  },
   openGraph: {
-    title: "Real Consultants Mortgage | Buy Smarter Without Confusion",
-    description: "The mortgage system that helps you buy smarter — without confusion or pressure.",
+    title: "Chris Crocker | Mortgage Advisor",
+    description:
+      "The mortgage system that helps you buy smarter — without confusion or pressure.",
     type: "website",
+    images: [
+      {
+        url: "/og-image.webp",
+        width: 1200,
+        height: 630,
+        alt: "Chris Crocker Mortgage Advisor",
+      },
+    ],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Chris Crocker | Mortgage Advisor",
+    description: "The mortgage system that helps you buy smarter — without confusion or pressure.",
+    images: ["/og-image.webp"],
   },
 };
 
